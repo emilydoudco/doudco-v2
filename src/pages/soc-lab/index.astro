@@ -1,0 +1,56 @@
+---
+import Page from '../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('soc-lab', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Page title="SOC Lab" description="Home lab security writeups — SIEM analysis, incident detection, and threat hunting by Emily Rose Doud.">
+
+  <section class="section-padded pb-0">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">Security Practice</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">SOC Lab</h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        Hands-on security writeups from my home lab — where I simulate attacks, analyze logs,
+        and build detection skills in a safe environment. Every entry is honest about what worked
+        and what didn't.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padded">
+    <div class="container-content">
+      {posts.length === 0 ? (
+        <div class="card p-12 text-center">
+          <p class="font-serif text-2xl text-brown/40 italic">Writeups coming soon.</p>
+          <p class="text-body mt-2">The lab is running — the writing is catching up.</p>
+        </div>
+      ) : (
+        <div class="grid gap-6">
+          {posts.map((post, i) => (
+            <a
+              href={`/soc-lab/${post.slug}`}
+              class={`card p-8 group grid sm:grid-cols-[1fr_auto] gap-4 reveal reveal-delay-${Math.min(i + 1, 4)}`}
+            >
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {post.data.tags.map(tag => <span class="tag-rose">{tag}</span>)}
+                </div>
+                <h2 class="font-serif text-2xl text-brown group-hover:text-rose-deep transition-colors mb-2">
+                  {post.data.title}
+                </h2>
+                <p class="text-body">{post.data.description}</p>
+              </div>
+              <time class="text-label self-start whitespace-nowrap" datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </time>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+</Page>

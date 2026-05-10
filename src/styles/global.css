@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream:    #F5F0E8;
+    --color-rose:     #9B2335;
+    --color-sage:     #7D9E7C;
+    --color-brown:    #3D2B1F;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-brown font-sans;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(125, 158, 124, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(155, 35, 53, 0.06) 0%, transparent 60%);
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    @apply bg-rose-pale text-rose-deep;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-cream-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-brown-light rounded-full; }
+}
+
+@layer components {
+  /* --- Typography --- */
+  .text-label {
+    @apply font-sans text-xs font-medium tracking-[0.15em] uppercase text-brown-light;
+  }
+
+  .text-body-lg {
+    @apply font-sans text-lg leading-relaxed text-brown-mid;
+  }
+
+  .text-body {
+    @apply font-sans text-base leading-relaxed text-brown-mid;
+  }
+
+  /* --- Buttons --- */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-rose-deep text-cream font-sans text-sm font-medium tracking-wide
+           rounded-full transition-all duration-300 ease-botanical
+           hover:bg-rose-mid hover:shadow-rose hover:-translate-y-0.5
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-deep focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-brown-mid text-brown font-sans text-sm font-medium
+           tracking-wide rounded-full transition-all duration-300 ease-botanical
+           hover:border-rose-deep hover:text-rose-deep hover:-translate-y-0.5
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-deep focus-visible:ring-offset-2;
+  }
+
+  /* --- Cards --- */
+  .card {
+    @apply bg-cream-50 rounded-2xl shadow-card transition-all duration-300 ease-botanical
+           hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  /* --- Section wrappers --- */
+  .section-padded {
+    @apply px-6 py-section sm:px-12 lg:px-24;
+  }
+
+  .container-content {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* --- Decorative rule --- */
+  .ruled-heading {
+    @apply relative pb-4 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-rose-deep;
+  }
+
+  /* --- Tag/pill --- */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-sans;
+  }
+
+  .tag-rose  { @apply tag bg-rose-pale  text-rose-deep; }
+  .tag-sage  { @apply tag bg-sage-pale  text-sage-dark; }
+  .tag-brown { @apply tag bg-cream-200  text-brown; }
+
+  /* --- Scroll reveal base (JS adds .visible) --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-botanical, transform 0.7s ease-botanical;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+}

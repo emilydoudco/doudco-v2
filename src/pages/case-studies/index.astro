@@ -1,0 +1,55 @@
+---
+import Page from '../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+const studies = (await getCollection('case-studies', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Page title="Case Studies" description="IR-style writeups from real client engagements — anonymized, detailed, and honest.">
+
+  <section class="section-padded pb-section-sm">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">Client Work</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">Case Studies</h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        Incident response-style writeups from real client work — anonymized where needed,
+        detailed where it counts. These are the problems I solved and how I solved them.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padded">
+    <div class="container-content">
+      {studies.length === 0 ? (
+        <div class="card p-12 text-center">
+          <p class="font-serif text-2xl text-brown/40 italic">Case studies coming soon.</p>
+          <p class="text-body mt-2">Client writeups in progress — check back shortly.</p>
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 gap-6">
+          {studies.map((study, i) => (
+            <a
+              href={`/case-studies/${study.slug}`}
+              class={`card p-8 group reveal reveal-delay-${Math.min(i + 1, 4)}`}
+            >
+              {study.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {study.data.tags.map(tag => <span class="tag-rose">{tag}</span>)}
+                </div>
+              )}
+              <h2 class="font-serif text-2xl text-brown group-hover:text-rose-deep transition-colors mb-2">
+                {study.data.title}
+              </h2>
+              <p class="text-body text-sm mb-4">{study.data.description}</p>
+              {study.data.outcome && (
+                <p class="text-label text-sage-dark">Outcome: <span class="normal-case text-sage-dark font-normal">{study.data.outcome}</span></p>
+              )}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+</Page>

@@ -1,0 +1,59 @@
+---
+const year = new Date().getFullYear();
+
+const links = [
+  { label: 'LinkedIn',  href: 'https://linkedin.com/in/emilydoud' },
+  { label: 'GitHub',    href: 'https://github.com/emilydoud' },
+  { label: 'Email',     href: 'mailto:hello@doudco.com' },
+];
+---
+
+<footer class="relative mt-section border-t border-cream-200 overflow-hidden">
+  <!-- Decorative botanical tint -->
+  <div class="absolute inset-0 bg-gradient-to-br from-sage-pale/20 via-transparent to-rose-pale/10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative section-padded">
+    <div class="container-content">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12">
+
+        <!-- Brand col -->
+        <div class="md:col-span-2">
+          <p class="font-display text-3xl font-light text-brown mb-2">
+            Doud <em class="not-italic text-rose-deep">Co.</em>
+          </p>
+          <p class="text-label mb-4">Layer 8 Support</p>
+          <p class="text-body max-w-sm">
+            IT &amp; security services, photography, and graphic design — for humans, by a human.
+          </p>
+        </div>
+
+        <!-- Links col -->
+        <nav aria-label="Footer navigation">
+          <p class="text-label mb-4">Connect</p>
+          <ul class="flex flex-col gap-2">
+            {links.map(({ label, href }) => (
+              <li>
+                <a
+                  href={href}
+                  class="font-sans text-brown-mid hover:text-rose-deep transition-colors duration-200 text-sm"
+                  {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="border-t border-cream-200 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <p class="text-xs text-brown-light font-sans">
+          &copy; {year} Emily Rose Doud &middot; Doud Co.
+        </p>
+        <p class="text-xs text-brown-light font-sans italic">
+          Made with strong coffee and curiosity.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

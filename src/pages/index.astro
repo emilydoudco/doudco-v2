@@ -1,0 +1,264 @@
+---
+import Page from '../layouts/Page.astro';
+---
+
+<Page
+  title="Doud Co."
+  description="IT & Security services, photography, and graphic design. Layer 8 Support — by Emily Rose Doud."
+>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+
+    <!-- Layered background -->
+    <div class="absolute inset-0" aria-hidden="true">
+      <div class="absolute inset-0 bg-gradient-to-br from-cream via-cream-100 to-cream-200"></div>
+      <!-- Botanical tints -->
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-sage-pale/30 via-transparent to-transparent"></div>
+      <div class="absolute bottom-0 left-0 w-2/3 h-1/2 bg-gradient-to-tr from-rose-pale/20 via-transparent to-transparent"></div>
+      <!-- Noise grain overlay -->
+      <div class="absolute inset-0 bg-noise opacity-60"></div>
+    </div>
+
+    <!-- Decorative circle -->
+    <div
+      class="absolute -right-24 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-sage/20"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute -right-32 top-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-rose-deep/10"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative section-padded w-full">
+      <div class="container-content grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Copy -->
+        <div>
+          <p class="text-label mb-6 reveal">IT · Security · Creative Services</p>
+
+          <h1 class="font-display text-display-xl text-brown leading-[1.05] mb-6 reveal reveal-delay-1">
+            Layer 8<br />
+            <em class="text-rose-deep not-italic">Support.</em>
+          </h1>
+
+          <p class="text-body-lg max-w-md mb-10 reveal reveal-delay-2">
+            Hi, I'm Emily — IT specialist, security enthusiast, and visual storyteller.
+            Doud Co. is where <em>technical rigor</em> meets <em>creative eye</em>.
+          </p>
+
+          <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
+            <a href="/about" class="btn-primary">Meet Emily</a>
+            <a href="/soc-lab" class="btn-ghost">View SOC Lab</a>
+          </div>
+        </div>
+
+        <!-- Portrait placeholder — swap in your logo/photo -->
+        <div class="relative flex justify-center lg:justify-end reveal reveal-delay-2">
+          <div class="relative w-80 h-80 lg:w-[420px] lg:h-[420px]">
+            <!-- Outer decorative ring -->
+            <div class="absolute inset-0 rounded-full border-2 border-rose-deep/20 animate-[spin_30s_linear_infinite]"></div>
+            <!-- Botanical illustration placeholder -->
+            <div class="absolute inset-4 rounded-full bg-gradient-to-br from-sage-pale via-cream to-rose-pale flex items-center justify-center overflow-hidden shadow-rose">
+              <!-- Replace this div with your <img src="/images/logo-portrait.png" alt="Emily Rose Doud" /> -->
+              <div class="text-center p-8">
+                <p class="font-serif text-3xl text-brown/40 italic leading-tight">Emily<br/>Rose<br/>Doud</p>
+                <p class="text-label mt-2 text-brown/30">logo placeholder</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-4" aria-hidden="true">
+      <div class="w-0.5 h-10 bg-gradient-to-b from-transparent to-brown-light animate-pulse"></div>
+      <p class="text-label text-brown-light/60" style="writing-mode: horizontal-tb;">scroll</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SERVICES STRIP
+  ═══════════════════════════════════════════════ -->
+  <section class="border-y border-cream-200 bg-cream-50 overflow-hidden">
+    <div class="section-padded py-16">
+      <div class="container-content">
+        <p class="text-label text-center mb-10 reveal">What I Do</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {[
+            {
+              icon: '🛡',
+              label: 'IT & Security',
+              desc: 'Home lab, SOC analysis, incident response documentation, and technical support.',
+              href: '/soc-lab',
+              color: 'from-rose-pale to-cream',
+            },
+            {
+              icon: '💻',
+              label: 'Operation Closet',
+              desc: 'Refurbishing computers and bridging the digital divide — one machine at a time.',
+              href: '/operation-closet-computer',
+              color: 'from-sage-pale to-cream',
+            },
+            {
+              icon: '📷',
+              label: 'Photography',
+              desc: 'Editorial, portrait, and lifestyle photography with a warm, intentional eye.',
+              href: '/creative-services',
+              color: 'from-cream-200 to-cream',
+            },
+            {
+              icon: '✦',
+              label: 'Graphic Design',
+              desc: 'Branding, print, and digital design that tells your story beautifully.',
+              href: '/creative-services',
+              color: 'from-rose-pale/50 to-sage-pale/30',
+            },
+          ].map((service, i) => (
+            <a
+              href={service.href}
+              class={`card p-6 bg-gradient-to-br ${service.color} group reveal reveal-delay-${i + 1}`}
+            >
+              <span class="text-2xl mb-4 block">{service.icon}</span>
+              <h3 class="font-serif text-lg text-brown mb-2 group-hover:text-rose-deep transition-colors">
+                {service.label}
+              </h3>
+              <p class="text-body text-sm">{service.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FEATURED: SOC LAB TEASER
+  ═══════════════════════════════════════════════ -->
+  <section class="section-padded">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Text -->
+        <div>
+          <p class="text-label mb-4 reveal">Featured Work</p>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal reveal-delay-1">
+            The SOC Lab
+          </h2>
+          <p class="text-body-lg mb-4 reveal reveal-delay-2">
+            A hands-on home lab where I simulate, detect, and document security incidents —
+            building real-world skills one writeup at a time.
+          </p>
+          <p class="text-body mb-8 reveal reveal-delay-2">
+            From Splunk dashboards to log analysis, these writeups are the technical backbone
+            of my security portfolio. Honest, detailed, and approachable.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-8 reveal reveal-delay-3">
+            <span class="tag-rose">SIEM</span>
+            <span class="tag-sage">Splunk</span>
+            <span class="tag-brown">Log Analysis</span>
+            <span class="tag-rose">Incident Response</span>
+          </div>
+          <a href="/soc-lab" class="btn-primary reveal reveal-delay-3">
+            Explore the Lab →
+          </a>
+        </div>
+
+        <!-- Visual placeholder -->
+        <div class="reveal reveal-delay-2">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brown-deep via-brown to-brown-mid overflow-hidden relative shadow-card-hover">
+            <!-- Terminal-style decorative element -->
+            <div class="absolute inset-0 p-6 font-mono text-xs text-sage-light/60 leading-relaxed select-none">
+              <p class="text-rose-light/80 mb-1">$ tail -f /var/log/syslog</p>
+              <p class="opacity-60">May 10 09:32:11 host sshd[1234]: Failed password for invalid user admin</p>
+              <p class="opacity-60">May 10 09:32:12 host sshd[1234]: Failed password for invalid user root</p>
+              <p class="text-sage-light/90">May 10 09:32:13 host sshd[1234]: <span class="text-rose-light">ALERT</span> brute force detected</p>
+              <p class="opacity-40">May 10 09:32:14 host iptables: BLOCK src=203.0.113.42</p>
+              <p class="mt-4 text-sage-light/80">$ splunk search index=main earliest=-24h<br/>&nbsp;&nbsp;| stats count by src_ip<br/>&nbsp;&nbsp;| sort -count</p>
+              <div class="mt-2 w-2 h-4 bg-rose-light/80 animate-pulse inline-block"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       OPERATION CLOSET COMPUTER TEASER
+  ═══════════════════════════════════════════════ -->
+  <section class="section-padded bg-gradient-to-br from-sage-pale/30 via-cream to-cream-100">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Visual (left on this one) -->
+        <div class="reveal reveal-delay-1 order-2 lg:order-1">
+          <div class="aspect-square max-w-sm mx-auto rounded-2xl bg-gradient-to-br from-sage-pale to-cream-200 flex items-center justify-center shadow-card relative overflow-hidden">
+            <div class="text-center p-8">
+              <p class="font-display text-7xl text-sage/60 mb-4">💻</p>
+              <p class="font-serif text-2xl text-sage-dark italic">Operation</p>
+              <p class="font-display text-3xl text-brown">Closet Computer</p>
+            </div>
+            <!-- Decorative corner -->
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-rose-pale/30 rounded-tl-full"></div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="order-1 lg:order-2">
+          <p class="text-label mb-4 reveal">Community Project</p>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal reveal-delay-1">
+            Operation<br />Closet Computer
+          </h2>
+          <p class="text-body-lg mb-4 reveal reveal-delay-2">
+            Bridging the digital divide by refurbishing donated computers
+            for shelters and community organizations in need.
+          </p>
+          <p class="text-body mb-8 reveal reveal-delay-2">
+            What started as a garage full of dusty hardware became a mission.
+            Every machine gets wiped, rebuilt, and sent somewhere it matters.
+          </p>
+          <a href="/operation-closet-computer" class="btn-ghost reveal reveal-delay-3">
+            Learn More →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CTA BAND
+  ═══════════════════════════════════════════════ -->
+  <section class="section-padded bg-brown text-cream relative overflow-hidden">
+    <div class="absolute inset-0 bg-noise opacity-40" aria-hidden="true"></div>
+    <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-rose-deep/20 -translate-y-1/2 translate-x-1/4" aria-hidden="true"></div>
+    <div class="relative container-content text-center">
+      <p class="text-label text-cream/50 mb-4 reveal">Let's Connect</p>
+      <h2 class="font-display text-display-lg text-cream mb-6 reveal reveal-delay-1">
+        Ready to work together?
+      </h2>
+      <p class="text-body-lg text-cream/70 max-w-lg mx-auto mb-10 reveal reveal-delay-2">
+        Whether you need IT support, a fresh brand identity, or beautiful photography —
+        I'd love to hear from you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 reveal reveal-delay-3">
+        <a href="mailto:hello@doudco.com" class="btn-primary bg-rose-deep hover:bg-rose-mid">
+          Get in Touch
+        </a>
+        <a href="/about" class="btn-ghost border-cream/30 text-cream hover:border-rose-light hover:text-rose-light">
+          My Background
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Page>

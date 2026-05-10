@@ -1,0 +1,86 @@
+---
+import Page from '../layouts/Page.astro';
+
+const categories = [
+  {
+    id: 'photography',
+    title: 'Photography',
+    desc: 'Editorial, portrait, and lifestyle photography. My work has a warm, botanical quality — natural light, honest moments, intentional composition.',
+    tags: ['Portrait', 'Editorial', 'Lifestyle', 'Product'],
+  },
+  {
+    id: 'graphic-design',
+    title: 'Graphic Design',
+    desc: 'Brand identity, print, and digital design. I bring the same careful eye I use behind the lens to every layout and logo.',
+    tags: ['Branding', 'Print', 'Digital', 'Typography'],
+  },
+];
+---
+
+<Page title="Creative Services" description="Photography and graphic design by Emily Rose Doud — warm, editorial, and intentional.">
+
+  <section class="section-padded pb-section-sm">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">Creative Work</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">
+        Creative Services
+      </h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        Technical precision and creative instinct aren't opposites — they're what makes
+        work that actually resonates. Photography and design are how I balance the terminal.
+      </p>
+    </div>
+  </section>
+
+  {categories.map((cat, ci) => (
+    <section class:list={['section-padded', ci % 2 === 1 && 'bg-cream-50 border-y border-cream-200']}>
+      <div class="container-content">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+          <div class:list={[ci % 2 === 1 && 'lg:order-2']}>
+            <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal">{cat.title}</h2>
+            <p class="text-body-lg mb-4 reveal reveal-delay-1">{cat.desc}</p>
+            <div class="flex flex-wrap gap-2 mb-8 reveal reveal-delay-2">
+              {cat.tags.map(tag => <span class="tag-sage">{tag}</span>)}
+            </div>
+            <p class="text-body text-sm text-brown-light italic reveal reveal-delay-2">
+              Portfolio images coming soon — reach out to see current work.
+            </p>
+          </div>
+
+          <!-- Photo grid placeholder -->
+          <div class:list={['grid grid-cols-2 gap-3 reveal reveal-delay-1', ci % 2 === 1 && 'lg:order-1']}>
+            {[1,2,3,4].map(n => (
+              <div
+                class:list={[
+                  'rounded-xl bg-gradient-to-br overflow-hidden',
+                  n === 1 ? 'col-span-2 aspect-[2/1] from-sage-pale to-cream-200' :
+                  n === 2 ? 'aspect-square from-cream-200 to-rose-pale' :
+                  n === 3 ? 'aspect-square from-rose-pale to-sage-pale' :
+                            'aspect-square from-cream-100 to-cream-200',
+                ]}
+              >
+                <div class="w-full h-full flex items-center justify-center">
+                  <span class="text-brown/20 text-xs font-mono">image {n}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="section-padded">
+    <div class="container-content text-center">
+      <h2 class="font-display text-display-md text-brown mb-6 reveal">Book a Session</h2>
+      <p class="text-body-lg max-w-md mx-auto mb-8 reveal reveal-delay-1">
+        Ready to work together? Let's talk rates, availability, and creative vision.
+      </p>
+      <a href="mailto:hello@doudco.com?subject=Creative Services Inquiry" class="btn-primary reveal reveal-delay-2">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+</Page>

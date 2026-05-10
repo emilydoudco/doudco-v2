@@ -1,0 +1,94 @@
+---
+import Page from '../layouts/Page.astro';
+
+const certs = [
+  { name: 'CompTIA Security+', status: 'In Progress', color: 'tag-rose' },
+  { name: 'Google IT Support',  status: 'Completed',   color: 'tag-sage' },
+  { name: 'CompTIA A+',         status: 'Planned',     color: 'tag-brown' },
+];
+
+const skills = [
+  'Splunk SIEM', 'Log Analysis', 'Linux CLI', 'Windows Server', 'Active Directory',
+  'Wireshark', 'Nmap', 'Git & GitHub', 'Hugo', 'Astro',
+  'Adobe Creative Suite', 'Photography', 'Graphic Design',
+];
+---
+
+<Page title="About" description="Meet Emily Rose Doud — IT specialist, security enthusiast, and visual storyteller behind Doud Co.">
+
+  <!-- Page hero -->
+  <section class="section-padded pb-0">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">About</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">
+        Emily Rose Doud
+      </h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        IT specialist and security enthusiast by day, photographer and designer by heart.
+        I built Doud Co. to be the kind of technical support that actually <em>talks to you</em>
+        — Layer 8, the human layer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bio + photo -->
+  <section class="section-padded">
+    <div class="container-content grid lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-6">
+        <h2 class="font-display text-display-md text-brown ruled-heading reveal">My Story</h2>
+        <p class="text-body reveal reveal-delay-1">
+          I came to IT from a creative background, which means I approach every problem with both
+          analytical rigor and a designer's eye for clarity. Security isn't just about tools and
+          alerts — it's about understanding human behavior, and I bring that perspective to everything I do.
+        </p>
+        <p class="text-body reveal reveal-delay-1">
+          In 2024, I launched Operation Closet Computer to put idle hardware to work for communities
+          that need it. What started as clearing out a cluttered closet became a mission to bridge the
+          digital divide, one refurbished machine at a time.
+        </p>
+        <p class="text-body reveal reveal-delay-2">
+          When I'm not in the terminal or the darkroom, I'm building out my home SOC lab — because
+          the best way to learn defense is to practice offense in a controlled environment.
+        </p>
+      </div>
+
+      <!-- Photo placeholder -->
+      <div class="reveal reveal-delay-2">
+        <div class="aspect-[3/4] rounded-2xl bg-gradient-to-br from-sage-pale via-cream to-rose-pale overflow-hidden shadow-card flex items-center justify-center">
+          <div class="text-center p-8">
+            <p class="font-serif text-4xl text-brown/30 italic">Photo</p>
+            <p class="text-label text-brown/20 mt-2">coming soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certs -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Certifications</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {certs.map((cert, i) => (
+          <div class={`card p-6 reveal reveal-delay-${i + 1}`}>
+            <span class={`${cert.color} mb-4 inline-block`}>{cert.status}</span>
+            <h3 class="font-serif text-xl text-brown">{cert.name}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section-padded">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Skills & Tools</h2>
+      <div class="flex flex-wrap gap-3 reveal reveal-delay-1">
+        {skills.map(skill => (
+          <span class="tag-brown text-sm">{skill}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Page>
