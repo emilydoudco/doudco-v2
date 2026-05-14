@@ -3,9 +3,9 @@ import Page from '../layouts/Page.astro';
 import { CONTACT_URL } from '../config/contact';
 
 const stats = [
-  { number: '12+',   label: 'Machines Refurbished' },
-  { number: '4',     label: 'Organizations Served' },
-  { number: '100%',  label: 'Free to Recipients' },
+  { number: 'In Progress', label: 'Actively Building' },
+  { number: '100%',        label: 'Free to Recipients' },
+  { number: '∞',           label: 'Hardware Needed' },
 ];
 
 const process = [
@@ -29,8 +29,9 @@ const process = [
         Operation<br /><em class="not-italic text-rose-deep">Closet Computer</em>
       </h1>
       <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
-        A closet full of forgotten hardware. Communities without access to technology.
-        One mission: close the gap between the two.
+        A mission in motion. Operation Closet Computer is actively getting off the ground —
+        collecting hardware, building partnerships, and working toward getting machines
+        into the hands of people who need them.
       </p>
     </div>
   </section>
@@ -59,9 +60,14 @@ const process = [
           houselessness, job seekers at shelters, and students without devices, a refurbished
           machine can change the trajectory of their lives.
         </p>
+        <p class="text-body mb-4 reveal reveal-delay-2">
+          Operation Closet Computer started with a simple observation: there's a lot of
+          forgotten hardware out there, and a lot of people who could use it. This project
+          is my effort to connect those two things.
+        </p>
         <p class="text-body reveal reveal-delay-2">
-          Operation Closet Computer started when I realized I had more spare hardware than I
-          could use — and that people nearby had none at all. The fix was obvious.
+          This is a project I'm building alongside a full schedule — it's a work in progress,
+          and I'm proud of that. Follow along as it grows.
         </p>
       </div>
 
@@ -86,10 +92,11 @@ const process = [
   <!-- Donate CTA -->
   <section class="section-padded bg-gradient-to-br from-sage-pale/30 to-cream">
     <div class="container-content text-center">
-      <h2 class="font-display text-display-md text-brown mb-6 reveal">Want to Donate Hardware?</h2>
+      <h2 class="font-display text-display-md text-brown mb-6 reveal">Want to Help?</h2>
       <p class="text-body-lg max-w-lg mx-auto mb-8 reveal reveal-delay-1">
-        Old laptops, desktops, and accessories welcome. If it can run a browser and a
-        word processor, it can change someone's week.
+        Have old laptops, desktops, or accessories collecting dust? Know an organization
+        that could use donated machines? I'd love to hear from you — every connection helps
+        this project move forward.
       </p>
       <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
         Get in Touch →
