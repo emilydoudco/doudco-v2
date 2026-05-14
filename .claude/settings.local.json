@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/c/Users/emily/OneDrive/Desktop/cover.jpg\" \"/c/Users/emily/Projects/doudco-v2/public/images/case-studies/missing-os/cover.jpg\" && echo \"copied\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\emily\\OneDrive\\Desktop"
+    ]
+  }
+}
