@@ -1,0 +1,245 @@
+---
+import Page from '../../layouts/Page.astro';
+import { CONTACT_URL } from '../../config/contact';
+---
+
+<Page
+  title="The Missing Operating System"
+  description="Diagnosing and recovering a 2017 MacBook Pro that lost its bootable system — from a flashing question mark folder to a fully reinstalled macOS Ventura."
+>
+
+  <!-- Back link -->
+  <div class="section-padded pb-0">
+    <div class="container-content">
+      <a href="/case-studies" class="text-label inline-flex items-center gap-2 hover:text-rose-deep transition-colors reveal">
+        ← Case Studies
+      </a>
+    </div>
+  </div>
+
+  <!-- Main section: text left, images right -->
+  <section class="section-padded">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- LEFT: all content -->
+        <div>
+          <div class="flex flex-wrap gap-2 mb-5 reveal">
+            <span class="tag-rose">IT Support</span>
+            <span class="tag-rose">macOS Recovery</span>
+            <span class="tag-sage">Disk Utility</span>
+            <span class="tag-sage">OS Reinstall</span>
+            <span class="tag-brown">Hardware Assessment</span>
+          </div>
+
+          <h1 class="font-display text-display-md text-brown ruled-heading mb-6 reveal reveal-delay-1">
+            The Missing Operating System
+          </h1>
+
+          <div class="flex flex-wrap items-center gap-3 mb-8 reveal reveal-delay-1">
+            <span class="tag-sage">Resolved</span>
+            <span class="text-brown-light/40">·</span>
+            <time class="text-label" datetime="2026-05-13">May 13, 2026</time>
+          </div>
+
+          <div class="space-y-4 reveal reveal-delay-2">
+            <p class="text-body">
+              A user reported that their Mac laptop was not working — unable to turn on or reach the main screen. The Mac was older, had been unresponsive and slow, and had recently lost any real functionality.
+            </p>
+            <p class="text-body">
+              Upon turning on the computer I found a flashing folder with a question mark, which indicated the computer could no longer find a valid startup disk. I restarted and held <code class="font-mono text-sm bg-cream-200 text-rose-deep px-1.5 py-0.5 rounded">Command + R</code> to trigger Recovery mode. Because local Recovery files were missing, the Mac automatically fell back into Internet Recovery — downloading a recovery system directly from Apple's servers over Wi-Fi.
+            </p>
+            <p class="text-body">
+              Once inside Disk Utility, I found the SSD was intact. The presence of Macintosh HD, Preboot, and Recovery volumes confirmed the macOS file structure was still in place. I ran First Aid on both Macintosh HD and AppleAPFSMedia — both passed. However, when I went to choose a startup disk, the list was completely empty. The computer could not see a bootable system, meaning a reinstall was necessary. The user confirmed the machine had been wiped of personal files prior to the failure.
+            </p>
+            <p class="text-body">
+              Back in the Utilities menu I selected Reinstall macOS, but an error occurred immediately. I opened Terminal to check the system date and found it read <code class="font-mono text-sm bg-cream-200 text-rose-deep px-1.5 py-0.5 rounded">010714392024</code> — January 7, 2024. A Mac's system clock must be accurate for Apple's servers to validate software installs. I corrected the date and restarted.
+            </p>
+            <p class="text-body">
+              After restarting, the Mac skipped Recovery entirely and booted directly into the Migration Assistant screen — the first step of a freshly installed system. The macOS reinstall had completed successfully in the background once the date was corrected.
+            </p>
+            <p class="text-body">
+              After setup I checked About This Mac: MacBook Pro 13-inch, 2017, dual-core Intel i5, 8GB of soldered RAM that cannot be upgraded. The machine was running macOS Ventura 13.7.8 — the newest OS this hardware supports. Ventura still receives security updates for now, but its support window is limited.
+            </p>
+            <p class="text-body">
+              A battery check revealed "Service Recommended" status, meaning Apple recommends replacement. The Manage Battery Longevity setting was enabled, which macOS uses automatically to slow further wear — but a degraded battery causes macOS to throttle CPU performance, making the device feel slower and less responsive than its specs suggest.
+            </p>
+          </div>
+
+          <!-- Resolution cards -->
+          <div class="mt-8 space-y-4 reveal reveal-delay-3">
+            <h2 class="font-display text-display-md text-brown ruled-heading mb-6">The Options</h2>
+
+            <div class="card p-6 border-l-4 border-sage">
+              <p class="text-label text-sage-dark mb-2">Option 1 — Battery Replacement</p>
+              <p class="text-body text-sm mb-2">
+                Approximately $200 out of warranty. A new battery restores responsiveness and removes CPU throttling, but the OS remains near end-of-life. Not a long-term solution.
+              </p>
+            </div>
+
+            <div class="card p-6 border-l-4 border-rose-deep">
+              <p class="text-label text-rose-deep mb-2">Option 2 — Device Replacement (Recommended)</p>
+              <p class="text-body text-sm mb-2">
+                Apple's trade-in program may return $45–$100 for this machine toward a new MacBook starting around $800. New Macs offer significantly better performance, modern OS support, and Apple Silicon efficiency. Most likely the best long-term value.
+              </p>
+            </div>
+          </div>
+
+          <!-- Outcome -->
+          <div class="card bg-gradient-to-br from-sage-pale/40 to-cream p-6 mt-6 reveal reveal-delay-3">
+            <p class="text-label mb-2">Outcome</p>
+            <p class="text-body">
+              macOS Ventura successfully reinstalled. The root cause — an incorrect system date blocking Apple's authentication — was identified and resolved. The user was given a fully working machine along with an honest assessment of its limitations and two clear paths forward.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: image grid -->
+        <div class="grid grid-cols-2 gap-3 reveal reveal-delay-1">
+
+          <!-- Flashing folder — wide, opens the story -->
+          <figure class="col-span-2">
+            <div class="aspect-[2/1] rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/flashing.webp"
+                alt="MacBook Pro showing flashing question mark folder — startup disk not found"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 1 — Flashing question mark folder: startup disk not found
+            </figcaption>
+          </figure>
+
+          <!-- Internet Recovery -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/globe.webp"
+                alt="Mac showing Starting Internet Recovery screen with globe icon"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 2 — Internet Recovery loading from Apple's servers
+            </figcaption>
+          </figure>
+
+          <!-- Disk Utility -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/osx.webp"
+                alt="Disk Utility showing Macintosh HD, Preboot, Recovery volumes intact"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 3 — Disk Utility: SSD and APFS structure intact
+            </figcaption>
+          </figure>
+
+          <!-- Empty startup disk -->
+          <figure class="col-span-2">
+            <div class="aspect-[2/1] rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/startup.webp"
+                alt="Choose Startup Disk dialog showing no bootable systems found"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 4 — No bootable system found — reinstall required
+            </figcaption>
+          </figure>
+
+          <!-- Date error -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/date.webp"
+                alt="macOS Sierra install showing No bag entry error caused by incorrect system date"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 5 — Install error caused by incorrect system clock
+            </figcaption>
+          </figure>
+
+          <!-- Migration Assistant -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/migration.webp"
+                alt="Migration Assistant screen confirming macOS reinstall completed successfully"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 6 — Migration Assistant: reinstall successful
+            </figcaption>
+          </figure>
+
+          <!-- Working desktop -->
+          <figure class="col-span-2">
+            <div class="aspect-[2/1] rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/main.webp"
+                alt="MacBook Pro booted into macOS Ventura desktop"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 7 — macOS Ventura running successfully
+            </figcaption>
+          </figure>
+
+          <!-- Hardware details -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/details.webp"
+                alt="About This Mac showing MacBook Pro 2017, 8GB RAM, macOS Ventura 13.7.8"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 8 — Hardware specs: 2017 MacBook Pro, Ventura 13.7.8
+            </figcaption>
+          </figure>
+
+          <!-- Battery -->
+          <figure>
+            <div class="aspect-square rounded-xl overflow-hidden bg-brown-deep">
+              <img
+                src="/images/case-studies/missing-os/battery.webp"
+                alt="Battery settings showing Service Recommended status and Important Battery Message"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <figcaption class="text-label mt-2 text-brown-light">
+              Fig. 9 — Battery: Service Recommended
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padded bg-brown text-cream relative overflow-hidden">
+    <div class="absolute inset-0 bg-noise opacity-40" aria-hidden="true"></div>
+    <div class="relative container-content flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+      <div>
+        <p class="text-label text-cream/50 mb-1">Need help with a tech problem?</p>
+        <p class="font-serif text-2xl text-cream">Let's figure it out together.</p>
+      </div>
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary shrink-0">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+</Page>
