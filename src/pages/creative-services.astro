@@ -1,5 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
+import { CONTACT_URL } from '../config/contact';
 
 const categories = [
   {
@@ -77,7 +78,7 @@ const categories = [
       <p class="text-body-lg max-w-md mx-auto mb-8 reveal reveal-delay-1">
         Ready to work together? Let's talk rates, availability, and creative vision.
       </p>
-      <a href="mailto:hello@doudco.com?subject=Creative Services Inquiry" class="btn-primary reveal reveal-delay-2">
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
         Get in Touch →
       </a>
     </div>

@@ -1,5 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
+import { CONTACT_URL } from '../config/contact';
 ---
 
 <Page
@@ -62,11 +63,11 @@ import Page from '../layouts/Page.astro';
             <div class="absolute inset-0 rounded-full border-2 border-rose-deep/20 animate-[spin_30s_linear_infinite]"></div>
             <!-- Botanical illustration placeholder -->
             <div class="absolute inset-4 rounded-full bg-gradient-to-br from-sage-pale via-cream to-rose-pale flex items-center justify-center overflow-hidden shadow-rose">
-              <!-- Replace this div with your <img src="/images/logo-portrait.png" alt="Emily Rose Doud" /> -->
-              <div class="text-center p-8">
-                <p class="font-serif text-3xl text-brown/40 italic leading-tight">Emily<br/>Rose<br/>Doud</p>
-                <p class="text-label mt-2 text-brown/30">logo placeholder</p>
-              </div>
+                <img
+                src="/images/logo.jpg"
+                alt="Doud Co. — Emily Rose Doud, illustrated portrait surrounded by roses and ethernet cables"
+                class="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -251,7 +252,7 @@ import Page from '../layouts/Page.astro';
         I'd love to hear from you.
       </p>
       <div class="flex flex-wrap justify-center gap-4 reveal reveal-delay-3">
-        <a href="mailto:hello@doudco.com" class="btn-primary bg-rose-deep hover:bg-rose-mid">
+        <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary bg-rose-deep hover:bg-rose-mid">
           Get in Touch
         </a>
         <a href="/about" class="btn-ghost border-cream/30 text-cream hover:border-rose-light hover:text-rose-light">

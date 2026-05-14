@@ -1,54 +1,68 @@
 ---
 import Page from '../../layouts/Page.astro';
-import { getCollection } from 'astro:content';
 
-const studies = (await getCollection('case-studies', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const studies = [
+  {
+    href:        '/case-studies/mac-limited-function',
+    title:       'The Mystery of the Mac with Limited Function',
+    description: 'Diagnosing internet access restrictions on a 2011 iMac from a former commercial environment — from MDM investigation to OS-level resolution.',
+    outcome:     'Resolved — Firefox ESR + long-term OS upgrade path presented',
+    tags:        ['IT Support', 'macOS', 'Terminal Diagnostics', 'MDM'],
+    image:       '/images/case-studies/mac-thumb.jpg',
+    date:        'May 7, 2026',
+  },
+];
 ---
 
-<Page title="Case Studies" description="IR-style writeups from real client engagements — anonymized, detailed, and honest.">
+<Page title="Case Studies" description="IR-style writeups from real client engagements — methodical, honest, and documented.">
 
   <section class="section-padded pb-section-sm">
     <div class="container-content">
       <p class="text-label mb-4 reveal">Client Work</p>
       <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">Case Studies</h1>
       <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
-        Incident response-style writeups from real client work — anonymized where needed,
-        detailed where it counts. These are the problems I solved and how I solved them.
+        Real problems, documented solutions. Each case study walks through the problem,
+        the diagnostic process, and the outcome — honest about what worked and why.
       </p>
     </div>
   </section>
 
   <section class="section-padded">
     <div class="container-content">
-      {studies.length === 0 ? (
-        <div class="card p-12 text-center">
-          <p class="font-serif text-2xl text-brown/40 italic">Case studies coming soon.</p>
-          <p class="text-body mt-2">Client writeups in progress — check back shortly.</p>
-        </div>
-      ) : (
-        <div class="grid sm:grid-cols-2 gap-6">
-          {studies.map((study, i) => (
-            <a
-              href={`/case-studies/${study.slug}`}
-              class={`card p-8 group reveal reveal-delay-${Math.min(i + 1, 4)}`}
-            >
-              {study.data.tags.length > 0 && (
+      <div class="grid gap-8">
+        {studies.map((study, i) => (
+          <a
+            href={study.href}
+            class={`card group grid md:grid-cols-[300px_1fr] overflow-hidden reveal reveal-delay-${i + 1}`}
+          >
+            <!-- Image -->
+            <div class="aspect-[4/3] md:aspect-auto bg-brown-deep overflow-hidden">
+              <img
+                src={study.image}
+                alt={study.title}
+                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+              />
+            </div>
+
+            <!-- Content -->
+            <div class="p-8 flex flex-col justify-between gap-4">
+              <div>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  {study.data.tags.map(tag => <span class="tag-rose">{tag}</span>)}
+                  {study.tags.map(tag => <span class="tag-rose">{tag}</span>)}
                 </div>
-              )}
-              <h2 class="font-serif text-2xl text-brown group-hover:text-rose-deep transition-colors mb-2">
-                {study.data.title}
-              </h2>
-              <p class="text-body text-sm mb-4">{study.data.description}</p>
-              {study.data.outcome && (
-                <p class="text-label text-sage-dark">Outcome: <span class="normal-case text-sage-dark font-normal">{study.data.outcome}</span></p>
-              )}
-            </a>
-          ))}
-        </div>
-      )}
+                <h2 class="font-serif text-2xl text-brown group-hover:text-rose-deep transition-colors mb-3">
+                  {study.title}
+                </h2>
+                <p class="text-body">{study.description}</p>
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-cream-200">
+                <span class="tag-sage">{study.outcome}</span>
+                <time class="text-label">{study.date}</time>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

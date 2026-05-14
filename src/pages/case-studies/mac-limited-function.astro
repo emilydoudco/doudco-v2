@@ -1,0 +1,325 @@
+---
+import Page from '../../layouts/Page.astro';
+import { CONTACT_URL } from '../../config/contact';
+---
+
+<Page
+  title="The Mystery of the Mac with Limited Function"
+  description="Diagnosing internet access restrictions on a 2011 iMac from a former commercial environment — from MDM investigation to OS-level resolution."
+>
+
+  <!-- ── Hero ── -->
+  <section class="section-padded pb-0">
+    <div class="container-content max-w-4xl">
+      <a href="/case-studies" class="text-label inline-flex items-center gap-2 mb-6 hover:text-rose-deep transition-colors reveal">
+        ← Case Studies
+      </a>
+
+      <div class="flex flex-wrap gap-2 mb-5 reveal reveal-delay-1">
+        <span class="tag-rose">IT Support</span>
+        <span class="tag-rose">macOS</span>
+        <span class="tag-sage">Terminal Diagnostics</span>
+        <span class="tag-sage">MDM</span>
+        <span class="tag-brown">DNS</span>
+      </div>
+
+      <h1 class="font-display text-display-lg text-brown mb-4 reveal reveal-delay-1">
+        The Mystery of the Mac<br class="hidden sm:block" /> with Limited Function
+      </h1>
+
+      <div class="flex flex-wrap items-center gap-4 mb-6 reveal reveal-delay-2">
+        <span class="tag-sage text-sm">Resolved</span>
+        <span class="text-brown-light/40">·</span>
+        <time class="text-label" datetime="2026-05-07">May 7, 2026</time>
+        <span class="text-brown-light/40">·</span>
+        <span class="text-label">Emily Doud · Doud Co.</span>
+      </div>
+
+      <!-- Summary card -->
+      <div class="card bg-gradient-to-br from-sage-pale/40 to-cream p-6 mb-0 reveal reveal-delay-2">
+        <p class="text-label mb-2">Outcome</p>
+        <p class="text-body">
+          User received an immediate working solution (Firefox ESR) and two clear long-term paths
+          — OpenCore Legacy Patcher to extend the machine's life, or planned replacement —
+          with honest tradeoffs laid out for each.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── The Problem ── -->
+  <section class="section-padded">
+    <div class="container-content max-w-4xl">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal">The Problem</h2>
+          <p class="text-body mb-4 reveal reveal-delay-1">
+            A complaint about functionality with a Mac computer was brought to my attention when a
+            user said she was unable to connect to some sites on the internet. Through a series of
+            questions I learned the computer had come from a restaurant in Chicago that had since
+            been shut down — obtained through a friend.
+          </p>
+          <p class="text-body mb-4 reveal reveal-delay-1">
+            Before starting, I confirmed the Mac had been wiped and that it was legitimately
+            obtained — not improperly taken from the prior business.
+          </p>
+          <p class="text-body reveal reveal-delay-2">
+            My initial thought went to security software — a firewall that may not have been fully
+            disabled. However, research quickly confirmed that macOS's built-in firewall generally
+            blocks <em>inbound</em> traffic, not outbound. That shifted the focus elsewhere.
+          </p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <figure>
+            <div class="rounded-2xl overflow-hidden shadow-card-hover bg-brown-deep">
+              <img
+                src="/images/case-studies/mac-1.webp"
+                alt="Terminal showing profiles list and sudo profiles -P returning no configuration profiles"
+                class="w-full object-cover"
+              />
+            </div>
+            <figcaption class="text-label mt-3 text-brown-light">
+              Fig. 1 — Checking for MDM configuration profiles via Terminal
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Diagnostic Hypothesis ── -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content max-w-4xl">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal">Diagnostic Hypothesis</h2>
+      <p class="text-body-lg mb-8 reveal reveal-delay-1">
+        After ruling out the firewall, I shifted focus to the kinds of restrictions a commercial
+        environment is most likely to leave behind:
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4 mb-8">
+        {[
+          { label: 'Configuration Profiles', desc: 'MDM software like Jamf or Mosyle pushes profiles that survive a basic wipe.' },
+          { label: 'Hosts File Modifications', desc: 'Domains can be silently redirected or blocked by editing /etc/hosts.' },
+          { label: 'Custom DNS Servers', desc: 'Content filtering via Cisco Umbrella or OpenDNS — common in restaurants and retail.' },
+          { label: 'Proxy Settings', desc: 'Web and secure web proxies can route or block traffic at the network level.' },
+          { label: 'Launch Daemons / Agents', desc: 'Third-party filtering software installed to run at system startup.' },
+          { label: 'Packet Filter Rules', desc: 'Custom pfctl rules could restrict outbound traffic beyond Apple defaults.' },
+        ].map((item, i) => (
+          <div class={`card p-5 reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <h3 class="font-serif text-base text-brown mb-1">{item.label}</h3>
+            <p class="text-body text-sm">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Terminal Work ── -->
+  <section class="section-padded">
+    <div class="container-content max-w-4xl">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal">Working Through the Terminal</h2>
+      <p class="text-body-lg mb-10 reveal reveal-delay-1">
+        I opened Terminal and worked through a systematic series of diagnostic commands,
+        documenting each result before moving to the next hypothesis.
+      </p>
+
+      <!-- Diagnostic steps with images interwoven -->
+      <div class="space-y-16">
+
+        <!-- Step 1 -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="reveal">
+            <p class="text-label mb-3">Step 01 — MDM Profiles</p>
+            <div class="bg-brown-deep rounded-xl p-5 font-mono text-xs text-sage-light/80 leading-relaxed mb-4">
+              <p class="text-rose-light/80 mb-1">$ profiles list</p>
+              <p class="text-cream/50">There are no configuration profiles installed for user</p>
+              <p class="text-rose-light/80 mt-2 mb-1">$ sudo profiles -P</p>
+              <p class="text-cream/50">There are no configuration profiles installed</p>
+            </div>
+            <p class="text-body text-sm">
+              Both commands returned empty — confirming no MDM or profile-based restrictions
+              remained on the machine.
+            </p>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <figure>
+              <div class="rounded-2xl overflow-hidden shadow-card bg-brown-deep">
+                <img
+                  src="/images/case-studies/mac-2.webp"
+                  alt="Terminal output showing hosts file contents and DNS check"
+                  class="w-full object-cover"
+                />
+              </div>
+              <figcaption class="text-label mt-3 text-brown-light">
+                Fig. 2 — Inspecting /etc/hosts and DNS configuration
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="lg:order-2 reveal">
+            <p class="text-label mb-3">Step 02 — Hosts File & DNS</p>
+            <div class="bg-brown-deep rounded-xl p-5 font-mono text-xs text-sage-light/80 leading-relaxed mb-4">
+              <p class="text-rose-light/80 mb-1">$ cat /etc/hosts</p>
+              <p class="text-cream/50">127.0.0.1   localhost</p>
+              <p class="text-cream/50">255.255.255.255   broadcasthost</p>
+              <p class="text-rose-light/80 mt-2 mb-1">$ scutil --dns | grep nameserver</p>
+              <p class="text-cream/50">nameserver[0] : 192.168.1.1</p>
+            </div>
+            <p class="text-body text-sm">
+              The hosts file contained only default localhost entries. DNS returned only
+              192.168.1.1 — the user's own router — meaning no content-filtering DNS
+              like Cisco Umbrella or OpenDNS was in play.
+            </p>
+          </div>
+          <div class="lg:order-1 reveal reveal-delay-1">
+            <figure>
+              <div class="rounded-2xl overflow-hidden shadow-card bg-brown-deep">
+                <img
+                  src="/images/case-studies/mac-3.webp"
+                  alt="Terminal showing LaunchDaemons, LaunchAgents, and pfctl output"
+                  class="w-full object-cover"
+                />
+              </div>
+              <figcaption class="text-label mt-3 text-brown-light">
+                Fig. 3 — Checking launch daemons, agents, and packet filter rules
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+          <div class="reveal">
+            <p class="text-label mb-3">Step 03 — Daemons, Agents & Proxy</p>
+            <div class="bg-brown-deep rounded-xl p-5 font-mono text-xs text-sage-light/80 leading-relaxed mb-4">
+              <p class="text-rose-light/80 mb-1">$ ls /Library/LaunchDaemons</p>
+              <p class="text-cream/40 italic mb-2">(empty)</p>
+              <p class="text-rose-light/80 mb-1">$ ls /Library/LaunchAgents</p>
+              <p class="text-cream/40 italic mb-2">(empty)</p>
+              <p class="text-rose-light/80 mb-1">$ sudo pfctl -s rules</p>
+              <p class="text-cream/50">anchor "com.apple/*" all</p>
+            </div>
+            <p class="text-body text-sm">
+              No third-party daemons or agents were installed. Packet filter rules showed
+              only default Apple anchors — no custom outbound blocks.
+              Web proxy and secure web proxy were both confirmed disabled via networksetup.
+            </p>
+          </div>
+          <div class="reveal reveal-delay-1">
+            <figure>
+              <div class="rounded-2xl overflow-hidden shadow-card bg-brown-deep">
+                <img
+                  src="/images/case-studies/mac-4.webp"
+                  alt="Terminal showing networksetup proxy disabled and macOS version 10.13.6"
+                  class="w-full object-cover"
+                />
+              </div>
+              <figcaption class="text-label mt-3 text-brown-light">
+                Fig. 4 — Proxy settings disabled; macOS 10.13.6 confirmed
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── The Discovery ── -->
+  <section class="section-padded bg-gradient-to-br from-rose-pale/20 to-cream border-y border-cream-200">
+    <div class="container-content max-w-4xl">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal">The Discovery</h2>
+      <p class="text-body-lg mb-4 reveal reveal-delay-1">
+        With the Mac itself ruled out as the source of the restriction, and the site still failing
+        on a separate network (my phone's hotspot), I shifted attention to the machine's age and
+        software environment.
+      </p>
+      <div class="card p-6 bg-cream border-l-4 border-rose-deep mb-6 reveal reveal-delay-2">
+        <p class="font-serif text-xl text-brown mb-1">2011 iMac · macOS 10.13.6 High Sierra</p>
+        <p class="text-body text-sm">Apple stopped releasing security updates for High Sierra in 2020.</p>
+      </div>
+      <p class="text-body reveal reveal-delay-2">
+        An outdated OS means an outdated TLS stack, outdated certificate roots, and outdated
+        browser engine support. Modern websites that enforce newer security standards will simply
+        refuse to load — not because of any restriction left by the restaurant, but because the
+        machine can no longer speak the modern web's language.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── Resolution ── -->
+  <section class="section-padded">
+    <div class="container-content max-w-4xl">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal">Resolution</h2>
+
+      <div class="grid sm:grid-cols-3 gap-6 mb-10">
+
+        <div class="card p-6 col-span-1 reveal reveal-delay-1 border-t-2 border-sage">
+          <p class="text-label text-sage-dark mb-3">Immediate Fix</p>
+          <h3 class="font-serif text-lg text-brown mb-2">Firefox ESR</h3>
+          <p class="text-body text-sm mb-3">
+            Extended Support Release — used in enterprise environments for longer browser support
+            cycles. Gave the user immediate access to the sites she needed.
+          </p>
+          <p class="text-label text-rose-deep">Support ends August 2026</p>
+        </div>
+
+        <div class="card p-6 col-span-1 reveal reveal-delay-2">
+          <p class="text-label text-brown-light mb-3">Long-Term Option A</p>
+          <h3 class="font-serif text-lg text-brown mb-2">OpenCore Legacy Patcher</h3>
+          <p class="text-body text-sm mb-3">
+            OCLP allows unsupported Macs to run macOS Sonoma, restoring full Safari compatibility
+            and modern web support for several more years.
+          </p>
+          <p class="text-label text-brown-light">More setup work · older hardware constraints</p>
+        </div>
+
+        <div class="card p-6 col-span-1 reveal reveal-delay-3">
+          <p class="text-label text-brown-light mb-3">Long-Term Option B</p>
+          <h3 class="font-serif text-lg text-brown mb-2">Hardware Replacement</h3>
+          <p class="text-body text-sm mb-3">
+            A 2011 iMac has less RAM than modern machines require. At some point, replacement
+            becomes more cost-effective than continued support.
+          </p>
+          <p class="text-label text-brown-light">Highest cost · cleanest outcome</p>
+        </div>
+
+      </div>
+
+      <div class="card p-6 bg-gradient-to-br from-sage-pale/30 to-cream reveal reveal-delay-2">
+        <p class="text-label mb-2">Key Takeaway</p>
+        <p class="text-body">
+          The restriction wasn't a leftover from the restaurant — it was the age of the machine
+          itself. By systematically ruling out every commercial environment artifact first, I
+          was able to confidently pivot to the OS-level diagnosis and give the user a clear,
+          honest picture of her options rather than a vague "it's old, get a new one."
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── CTA ── -->
+  <section class="section-padded bg-brown text-cream relative overflow-hidden">
+    <div class="absolute inset-0 bg-noise opacity-40" aria-hidden="true"></div>
+    <div class="relative container-content max-w-4xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+      <div>
+        <p class="text-label text-cream/50 mb-1">Need help with a tech problem?</p>
+        <p class="font-serif text-2xl text-cream">Let's figure it out together.</p>
+      </div>
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary shrink-0">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+</Page>

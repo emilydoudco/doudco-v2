@@ -1,5 +1,6 @@
 ---
 import Page from '../layouts/Page.astro';
+import { CONTACT_URL } from '../config/contact';
 
 const stats = [
   { number: '12+',   label: 'Machines Refurbished' },
@@ -90,7 +91,7 @@ const process = [
         Old laptops, desktops, and accessories welcome. If it can run a browser and a
         word processor, it can change someone's week.
       </p>
-      <a href="mailto:hello@doudco.com?subject=Hardware Donation" class="btn-primary reveal reveal-delay-2">
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
         Get in Touch →
       </a>
     </div>
