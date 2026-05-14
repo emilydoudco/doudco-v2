@@ -61,7 +61,8 @@ const { Content } = await study.render();
 </Page>
 
 <style is:global>
-  .prose-doudco h2 { @apply font-display text-display-md text-brown mt-12 mb-4 ruled-heading; }
+  .prose-doudco h2 { @apply font-display text-display-md text-brown mt-12 mb-4 relative pb-4; }
+  .prose-doudco h2::after { content: ''; @apply absolute bottom-0 left-0 w-12 h-0.5 bg-rose-deep; }
   .prose-doudco h3 { @apply font-serif text-2xl text-brown mt-8 mb-3; }
   .prose-doudco p  { @apply text-body mb-4; }
   .prose-doudco ul, .prose-doudco ol { @apply pl-6 mb-4 space-y-2; }

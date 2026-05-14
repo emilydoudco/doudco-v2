@@ -57,7 +57,11 @@ const { Content } = await post.render();
 <style is:global>
   /* MDX prose styles with brand system */
   .prose-doudco h2 {
-    @apply font-display text-display-md text-brown mt-12 mb-4 ruled-heading;
+    @apply font-display text-display-md text-brown mt-12 mb-4 relative pb-4;
+  }
+  .prose-doudco h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-12 h-0.5 bg-rose-deep;
   }
   .prose-doudco h3 {
     @apply font-serif text-2xl text-brown mt-8 mb-3;
