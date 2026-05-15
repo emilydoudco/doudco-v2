@@ -32,7 +32,7 @@ const skills = [
 
   <!-- Bio + photo -->
   <section class="section-padded">
-    <div class="container-content grid lg:grid-cols-3 gap-16">
+    <div class="container-content grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
       <div class="lg:col-span-2 space-y-6">
         <h2 class="font-display text-display-md text-brown ruled-heading reveal">My Story</h2>
         <p class="text-body reveal reveal-delay-1">
@@ -84,7 +84,7 @@ const skills = [
   <section class="section-padded bg-cream-50 border-y border-cream-200">
     <div class="container-content">
       <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Certifications</h2>
-      <div class="grid sm:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {certs.map((cert, i) => (
           <div class={`card p-6 reveal reveal-delay-${i + 1}`}>
             <span class={`${cert.color} mb-4 inline-block`}>{cert.status}</span>
