@@ -1,0 +1,68 @@
+---
+import Page from '../layouts/Page.astro';
+import { CONTACT_URL } from '../config/contact';
+---
+
+<Page title="Photography" description="Editorial, portrait, and lifestyle photography by Emily Rose Doud — warm, botanical, and intentional.">
+
+  <section class="section-padded pb-section-sm">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">Creative Work</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">Photography</h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        Editorial, portrait, and lifestyle photography. My work has a warm, botanical quality —
+        natural light, honest moments, intentional composition.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padded">
+    <div class="container-content">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <div class="flex flex-wrap gap-2 mb-8 reveal">
+            <span class="tag-sage">Portrait</span>
+            <span class="tag-sage">Editorial</span>
+            <span class="tag-sage">Lifestyle</span>
+            <span class="tag-sage">Product</span>
+          </div>
+          <p class="text-body-lg mb-4 reveal reveal-delay-1">
+            Every session starts with a conversation. I want to understand what you're trying to
+            say before I pick up a camera — whether that's a brand shoot, a portrait session, or
+            editorial work.
+          </p>
+          <p class="text-body reveal reveal-delay-2">
+            Portfolio images coming soon — reach out to see current work.
+          </p>
+        </div>
+
+        <!-- Photo grid placeholder -->
+        <div class="grid grid-cols-2 gap-3 reveal reveal-delay-1">
+          <div class="col-span-2 aspect-[2/1] rounded-xl bg-gradient-to-br from-sage-pale to-cream-200 flex items-center justify-center">
+            <span class="text-brown/20 text-xs font-mono">coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl bg-gradient-to-br from-cream-200 to-rose-pale flex items-center justify-center">
+            <span class="text-brown/20 text-xs font-mono">coming soon</span>
+          </div>
+          <div class="aspect-square rounded-xl bg-gradient-to-br from-rose-pale to-sage-pale flex items-center justify-center">
+            <span class="text-brown/20 text-xs font-mono">coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padded bg-cream-50 border-t border-cream-200">
+    <div class="container-content text-center">
+      <h2 class="font-display text-display-md text-brown mb-6 reveal">Book a Session</h2>
+      <p class="text-body-lg max-w-md mx-auto mb-8 reveal reveal-delay-1">
+        Ready to work together? Let's talk about rates, availability, and creative vision.
+      </p>
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+</Page>
