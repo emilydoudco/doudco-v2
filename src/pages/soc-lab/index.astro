@@ -13,9 +13,8 @@ const posts = (await getCollection('soc-lab', ({ data }) => !data.draft))
       <p class="text-label mb-4 reveal">Security Practice</p>
       <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">SOC Lab</h1>
       <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
-        Hands-on security writeups from my home lab — where I simulate attacks, analyze logs,
-        and build detection skills in a safe environment. Every entry is honest about what worked
-        and what didn't.
+        My home SOC lab is in progress — this is where I'll document simulations, log analysis,
+        and detection work as I build out the environment. Check back soon for the first writeup.
       </p>
     </div>
   </section>
@@ -24,8 +23,8 @@ const posts = (await getCollection('soc-lab', ({ data }) => !data.draft))
     <div class="container-content">
       {posts.length === 0 ? (
         <div class="card p-12 text-center">
-          <p class="font-serif text-2xl text-brown/40 italic">Writeups coming soon.</p>
-          <p class="text-body mt-2">The lab is running — the writing is catching up.</p>
+          <p class="font-serif text-2xl text-brown/40 italic">Coming Soon.</p>
+          <p class="text-body mt-2">First writeup in progress — check back shortly.</p>
         </div>
       ) : (
         <div class="grid gap-6">
