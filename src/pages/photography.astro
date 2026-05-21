@@ -3,12 +3,22 @@ import Page from '../layouts/Page.astro';
 import { CONTACT_URL } from '../config/contact';
 ---
 
-<Page title="Photography" description="Editorial, portrait, and lifestyle photography by Emily Rose Doud — warm, botanical, and intentional.">
+<Page title="Mobile Photo Studio" description="Editorial, portrait, and lifestyle photography by Emily Rose Doud — warm, botanical, and intentional.">
 
+  <!-- Hero -->
   <section class="section-padded pb-section-sm">
     <div class="container-content">
-      <p class="text-label mb-4 reveal">Creative Work</p>
-      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">Photography</h1>
+      <div class="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
+        <img
+          src="/images/photography-logo.jpg"
+          alt="Mobile Photo Studio logo"
+          class="w-24 h-24 object-contain rounded-xl"
+        />
+        <div>
+          <p class="text-label mb-2 reveal">Creative Work</p>
+          <h1 class="font-display text-display-lg text-brown reveal reveal-delay-1">Mobile Photo Studio</h1>
+        </div>
+      </div>
       <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
         Editorial, portrait, and lifestyle photography. My work has a warm, botanical quality —
         natural light, honest moments, intentional composition.
@@ -16,6 +26,7 @@ import { CONTACT_URL } from '../config/contact';
     </div>
   </section>
 
+  <!-- About the work -->
   <section class="section-padded">
     <div class="container-content">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
@@ -52,12 +63,31 @@ import { CONTACT_URL } from '../config/contact';
     </div>
   </section>
 
+  <!-- Pricing -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal">Pricing</h2>
+      <p class="text-body-lg max-w-xl reveal reveal-delay-1">
+        Pricing varies based on the type of session, location, and deliverables.
+        Reach out and we'll find something that works for you.
+      </p>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={CONTACT_URL}
+        class="btn-primary mt-8 inline-flex reveal reveal-delay-2"
+      >
+        Email for Pricing →
+      </a>
+    </div>
+  </section>
+
   <!-- CTA -->
-  <section class="section-padded bg-cream-50 border-t border-cream-200">
+  <section class="section-padded">
     <div class="container-content text-center">
       <h2 class="font-display text-display-md text-brown mb-6 reveal">Book a Session</h2>
       <p class="text-body-lg max-w-md mx-auto mb-8 reveal reveal-delay-1">
-        Ready to work together? Let's talk about rates, availability, and creative vision.
+        Ready to work together? Let's talk about availability and creative vision.
       </p>
       <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
         Get in Touch →
