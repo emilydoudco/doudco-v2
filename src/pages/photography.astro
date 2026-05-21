@@ -51,7 +51,7 @@ import { CONTACT_URL } from '../config/contact';
         </div>
 
         <!-- Portrait thumbnails -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal reveal-delay-1">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal reveal-delay-1 items-start">
           {[
             { src: '/images/photography/cover.jpg',   alt: 'Portrait' },
             { src: '/images/photography/marley-1.jpg', alt: 'Portrait — Marley' },
@@ -59,7 +59,7 @@ import { CONTACT_URL } from '../config/contact';
             { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
           ].map(photo => (
             <button
-              class="lightbox-trigger aspect-square rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-rose-deep"
+              class="lightbox-trigger aspect-[3/4] rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-rose-deep"
               data-src={photo.src}
               data-alt={photo.alt}
               aria-label={`View full size: ${photo.alt}`}
