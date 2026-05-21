@@ -50,23 +50,43 @@ import { CONTACT_URL } from '../config/contact';
           </p>
         </div>
 
-        <!-- Portrait thumbnails -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal reveal-delay-1 items-start">
-          {[
-            { src: '/images/photography/cover.jpg',   alt: 'Portrait' },
-            { src: '/images/photography/marley-1.jpg', alt: 'Portrait — Marley' },
-            { src: '/images/photography/marley-2.jpg', alt: 'Portrait — Marley' },
-            { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
-          ].map(photo => (
-            <button
-              class="lightbox-trigger aspect-[3/4] rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-rose-deep"
-              data-src={photo.src}
-              data-alt={photo.alt}
-              aria-label={`View full size: ${photo.alt}`}
-            >
-              <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
-            </button>
-          ))}
+        <!-- Portrait carousel -->
+        <div class="reveal reveal-delay-1">
+          <div id="carousel" class="relative rounded-xl overflow-hidden">
+            <!-- Slides -->
+            <div id="carousel-track" class="relative aspect-[3/4]">
+              {[
+                { src: '/images/photography/cover.jpg',    alt: 'Portrait' },
+                { src: '/images/photography/marley-1.jpg', alt: 'Portrait — Marley' },
+                { src: '/images/photography/marley-2.jpg', alt: 'Portrait — Marley' },
+                { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
+              ].map((photo, i) => (
+                <button
+                  class={`carousel-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                  data-src={photo.src}
+                  data-alt={photo.alt}
+                  aria-label={`View full size: ${photo.alt}`}
+                >
+                  <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+
+            <!-- Prev / Next arrows -->
+            <button id="carousel-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
+            <button id="carousel-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
+          </div>
+
+          <!-- Dot indicators -->
+          <div id="carousel-dots" class="flex justify-center gap-2 mt-3">
+            {[0,1,2,3].map(i => (
+              <button
+                class={`carousel-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`}
+                data-index={i}
+                aria-label={`Go to photo ${i + 1}`}
+              ></button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -111,36 +131,61 @@ import { CONTACT_URL } from '../config/contact';
 </div>
 
 <script>
-  const triggers = document.querySelectorAll('.lightbox-trigger');
-  const lightbox  = document.getElementById('lightbox')!;
-  const img       = document.getElementById('lightbox-img') as HTMLImageElement;
-  const closeBtn  = document.getElementById('lightbox-close')!;
+  // ── Carousel ──
+  const slides   = document.querySelectorAll<HTMLElement>('.carousel-slide');
+  const dots     = document.querySelectorAll<HTMLElement>('.carousel-dot');
+  const prevBtn  = document.getElementById('carousel-prev')!;
+  const nextBtn  = document.getElementById('carousel-next')!;
+  const carousel = document.getElementById('carousel')!;
+  let current    = 0;
+  let timer: ReturnType<typeof setInterval>;
 
-  function open(src: string, alt: string) {
-    img.src = src;
-    img.alt = alt;
+  function goTo(index: number) {
+    slides[current].classList.replace('opacity-100', 'opacity-0');
+    dots[current].classList.replace('bg-rose-deep', 'bg-brown/20');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.replace('opacity-0', 'opacity-100');
+    dots[current].classList.replace('bg-brown/20', 'bg-rose-deep');
+  }
+
+  function startAuto() { timer = setInterval(() => goTo(current + 1), 4000); }
+  function stopAuto()  { clearInterval(timer); }
+
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); stopAuto(); goTo(current - 1); startAuto(); });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); stopAuto(); goTo(current + 1); startAuto(); });
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => { stopAuto(); goTo(Number(dot.dataset.index)); startAuto(); });
+  });
+  carousel.addEventListener('mouseenter', stopAuto);
+  carousel.addEventListener('mouseleave', startAuto);
+  startAuto();
+
+  // ── Lightbox ──
+  const lightbox = document.getElementById('lightbox')!;
+  const lbImg    = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn = document.getElementById('lightbox-close')!;
+
+  function openLightbox(src: string, alt: string) {
+    lbImg.src = src;
+    lbImg.alt = alt;
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex');
     document.body.style.overflow = 'hidden';
   }
 
-  function close() {
+  function closeLightbox() {
     lightbox.classList.add('hidden');
     lightbox.classList.remove('flex');
     document.body.style.overflow = '';
   }
 
-  triggers.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const src = (btn as HTMLElement).dataset.src!;
-      const alt = (btn as HTMLElement).dataset.alt!;
-      open(src, alt);
-    });
+  document.querySelectorAll<HTMLElement>('.lightbox-trigger').forEach(btn => {
+    btn.addEventListener('click', () => openLightbox(btn.dataset.src!, btn.dataset.alt!));
   });
 
-  closeBtn.addEventListener('click', close);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </Page>
