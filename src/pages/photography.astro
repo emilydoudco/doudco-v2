@@ -50,20 +50,23 @@ import { CONTACT_URL } from '../config/contact';
           </p>
         </div>
 
-        <!-- Portrait photo grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 reveal reveal-delay-1">
-          <div class="col-span-2 rounded-xl overflow-hidden">
-            <img src="/images/photography/cover.jpg" alt="Portrait" class="w-full h-auto rounded-xl" />
-          </div>
-          <div class="col-span-2 rounded-xl overflow-hidden">
-            <img src="/images/photography/marley-1.jpg" alt="Portrait — Marley" class="w-full h-auto rounded-xl" />
-          </div>
-          <div class="rounded-xl overflow-hidden">
-            <img src="/images/photography/marley-2.jpg" alt="Portrait — Marley" class="w-full h-auto rounded-xl" />
-          </div>
-          <div class="rounded-xl overflow-hidden">
-            <img src="/images/photography/claire-1.jpg" alt="Portrait — Claire" class="w-full h-auto rounded-xl" />
-          </div>
+        <!-- Portrait thumbnails -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal reveal-delay-1">
+          {[
+            { src: '/images/photography/cover.jpg',   alt: 'Portrait' },
+            { src: '/images/photography/marley-1.jpg', alt: 'Portrait — Marley' },
+            { src: '/images/photography/marley-2.jpg', alt: 'Portrait — Marley' },
+            { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
+          ].map(photo => (
+            <button
+              class="lightbox-trigger aspect-square rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-rose-deep"
+              data-src={photo.src}
+              data-alt={photo.alt}
+              aria-label={`View full size: ${photo.alt}`}
+            >
+              <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+            </button>
+          ))}
         </div>
       </div>
     </div>
@@ -100,5 +103,44 @@ import { CONTACT_URL } from '../config/contact';
       </a>
     </div>
   </section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-brown-deep/90 backdrop-blur-sm p-4" role="dialog" aria-modal="true">
+  <button id="lightbox-close" class="absolute top-4 right-4 text-cream/70 hover:text-cream text-3xl leading-none" aria-label="Close">&times;</button>
+  <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[90vh] rounded-xl shadow-card-hover object-contain" />
+</div>
+
+<script>
+  const triggers = document.querySelectorAll('.lightbox-trigger');
+  const lightbox  = document.getElementById('lightbox')!;
+  const img       = document.getElementById('lightbox-img') as HTMLImageElement;
+  const closeBtn  = document.getElementById('lightbox-close')!;
+
+  function open(src: string, alt: string) {
+    img.src = src;
+    img.alt = alt;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  triggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = (btn as HTMLElement).dataset.src!;
+      const alt = (btn as HTMLElement).dataset.alt!;
+      open(src, alt);
+    });
+  });
+
+  closeBtn.addEventListener('click', close);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+</script>
 
 </Page>
