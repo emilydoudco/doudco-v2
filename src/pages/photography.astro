@@ -92,6 +92,60 @@ import { CONTACT_URL } from '../config/contact';
     </div>
   </section>
 
+  <!-- Landscape section -->
+  <section class="section-padded bg-sage-pale/40 border-y border-sage/20">
+    <div class="container-content">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+        <div>
+          <p class="text-label mb-3 reveal">Landscape</p>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal reveal-delay-1">
+            Capturing Wisconsin's<br />Natural Beauty
+          </h2>
+          <p class="text-body-lg reveal reveal-delay-2">
+            Wisconsin has a quiet, unhurried beauty — golden fields, still water, and skies
+            that stretch wide. This collection grows with every season, every drive, and
+            every moment worth stopping for.
+          </p>
+        </div>
+
+        <!-- Landscape carousel -->
+        <div class="reveal reveal-delay-1">
+          <div id="landscape-carousel" class="relative rounded-xl overflow-hidden">
+            <div class="relative aspect-[4/3]">
+              {[
+                { src: '/images/photography/landscape-1.jpg', alt: 'Wisconsin landscape' },
+                { src: '/images/photography/landscape-2.jpg', alt: 'Wisconsin landscape' },
+                { src: '/images/photography/landscape-3.jpg', alt: 'Wisconsin landscape' },
+              ].map((photo, i) => (
+                <button
+                  class={`landscape-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                  data-src={photo.src}
+                  data-alt={photo.alt}
+                  aria-label={`View full size: ${photo.alt}`}
+                >
+                  <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+            <button id="landscape-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
+            <button id="landscape-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
+          </div>
+          <div id="landscape-dots" class="flex justify-center gap-2 mt-3">
+            {[0,1,2].map(i => (
+              <button
+                class={`landscape-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-sage-dark' : 'bg-sage/30'}`}
+                data-index={i}
+                aria-label={`Go to photo ${i + 1}`}
+              ></button>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing -->
   <section class="section-padded bg-cream-50 border-y border-cream-200">
     <div class="container-content">
@@ -159,6 +213,35 @@ import { CONTACT_URL } from '../config/contact';
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
   startAuto();
+
+  // ── Landscape Carousel ──
+  const lSlides  = document.querySelectorAll<HTMLElement>('.landscape-slide');
+  const lDots    = document.querySelectorAll<HTMLElement>('.landscape-dot');
+  const lPrev    = document.getElementById('landscape-prev')!;
+  const lNext    = document.getElementById('landscape-next')!;
+  const lCarousel = document.getElementById('landscape-carousel')!;
+  let lCurrent   = 0;
+  let lTimer: ReturnType<typeof setInterval>;
+
+  function lGoTo(index: number) {
+    lSlides[lCurrent].classList.replace('opacity-100', 'opacity-0');
+    lDots[lCurrent].classList.replace('bg-sage-dark', 'bg-sage/30');
+    lCurrent = (index + lSlides.length) % lSlides.length;
+    lSlides[lCurrent].classList.replace('opacity-0', 'opacity-100');
+    lDots[lCurrent].classList.replace('bg-sage/30', 'bg-sage-dark');
+  }
+
+  function lStart() { lTimer = setInterval(() => lGoTo(lCurrent + 1), 5000); }
+  function lStop()  { clearInterval(lTimer); }
+
+  lPrev.addEventListener('click', (e) => { e.stopPropagation(); lStop(); lGoTo(lCurrent - 1); lStart(); });
+  lNext.addEventListener('click', (e) => { e.stopPropagation(); lStop(); lGoTo(lCurrent + 1); lStart(); });
+  lDots.forEach(dot => {
+    dot.addEventListener('click', () => { lStop(); lGoTo(Number(dot.dataset.index)); lStart(); });
+  });
+  lCarousel.addEventListener('mouseenter', lStop);
+  lCarousel.addEventListener('mouseleave', lStart);
+  lStart();
 
   // ── Lightbox ──
   const lightbox = document.getElementById('lightbox')!;
