@@ -41,23 +41,111 @@ const services = [
     </div>
   </section>
 
-  <!-- Pricing -->
+  <!-- Managed IT Plans -->
   <section class="section-padded">
     <div class="container-content">
-      <h2 class="font-display text-display-md text-brown ruled-heading mb-4 reveal">Rate Sheet</h2>
-      <p class="text-body mb-8 reveal reveal-delay-1">
-        <a href="/Layer8Support-RateSheet.pdf" target="_blank" rel="noopener noreferrer" class="text-rose-deep hover:underline">
-          Download PDF ↓
-        </a>
-      </p>
-      <div class="reveal reveal-delay-2 w-full rounded-xl overflow-hidden shadow-card border border-cream-200">
-        <iframe
-          src="/Layer8Support-RateSheet.pdf"
-          class="w-full"
-          style="height: 80vh; min-height: 600px;"
-          title="Layer 8 Support Rate Sheet"
-        ></iframe>
+      <div class="mb-4 reveal">
+        <h2 class="font-display text-display-md text-brown ruled-heading mb-2">Managed IT Plans</h2>
+        <p class="text-body text-brown-light">Predictable monthly support that keeps your business running — priced per user.</p>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 reveal reveal-delay-1">
+
+        <!-- Essentials -->
+        <div class="card p-8">
+          <p class="text-label mb-3">Essentials</p>
+          <p class="font-display text-5xl text-brown mb-1">$99</p>
+          <p class="text-body text-sm mb-6">/ user / mo</p>
+          <ul class="space-y-2">
+            {['System & network monitoring', 'Security patching & updates', 'Help desk support, business hours', 'Endpoint antivirus protection', 'Monthly performance check-in'].map(item => (
+              <li class="text-body text-sm flex gap-2"><span class="text-sage-dark">○</span>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Professional -->
+        <div class="card p-8 border-2 border-rose-deep relative">
+          <span class="tag-rose absolute -top-3 left-1/2 -translate-x-1/2 text-xs">Most Popular</span>
+          <p class="text-label mb-3">Professional</p>
+          <p class="font-display text-5xl text-rose-deep mb-1">$149</p>
+          <p class="text-body text-sm mb-6">/ user / mo</p>
+          <p class="text-body text-sm font-medium mb-3">Everything in Essentials, plus:</p>
+          <ul class="space-y-2">
+            {['Proactive maintenance & tune-ups', 'Automated cloud backup', 'Advanced endpoint security', 'Priority response times', 'Hardware & software asset tracking'].map(item => (
+              <li class="text-body text-sm flex gap-2"><span class="text-rose-deep">○</span>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Complete -->
+        <div class="card p-8">
+          <p class="text-label mb-3">Complete</p>
+          <p class="font-display text-5xl text-brown mb-1">$199</p>
+          <p class="text-body text-sm mb-6">/ user / mo</p>
+          <p class="text-body text-sm font-medium mb-3">Everything in Professional, plus:</p>
+          <ul class="space-y-2">
+            {['Managed cybersecurity & threat monitoring', 'After-hours support included', 'Quarterly IT strategy review', 'Vendor & subscription management'].map(item => (
+              <li class="text-body text-sm flex gap-2"><span class="text-sage-dark">○</span>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <p class="text-body text-sm text-brown-light italic reveal reveal-delay-2">Plans billed monthly · 3-user minimum · Custom plans available for larger teams and multi-site offices.</p>
+    </div>
+  </section>
+
+  <!-- Hourly & As-Needed -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <div class="mb-10 reveal">
+        <h2 class="font-display text-display-md text-brown ruled-heading mb-2">Hourly & As-Needed</h2>
+        <p class="text-body text-brown-light">For one-off fixes, upgrades, and clients not on a managed plan.</p>
+      </div>
+
+      <div class="space-y-4 max-w-3xl reveal reveal-delay-1">
+        {[
+          { label: 'Business IT Support',            desc: 'Troubleshooting, repairs, setup & configuration',         price: '$75',  unit: '/ hr' },
+          { label: 'Residential & Home Office',      desc: 'Computers, networks, and devices for home users',         price: '$60',  unit: '/ hr' },
+          { label: 'Cybersecurity Services',         desc: 'Security assessments, hardening, incident response',      price: '$110', unit: '/ hr' },
+          { label: 'After-Hours & Emergency Support',desc: 'Evenings, weekends, and urgent same-day response',        price: '$110', unit: '/ hr' },
+          { label: 'Diagnostic & Assessment',        desc: 'Full review of the issue with a clear repair plan',       price: '$89',  unit: 'flat' },
+        ].map(row => (
+          <div class="flex items-center justify-between gap-4 py-4 border-b border-cream-200 last:border-0">
+            <div>
+              <p class="font-serif text-lg text-brown">{row.label}</p>
+              <p class="text-body text-sm">{row.desc}</p>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-display text-2xl text-rose-deep">{row.price}</span>
+              <span class="text-label ml-1">{row.unit}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-body text-sm text-brown-light italic mt-6 max-w-2xl reveal reveal-delay-2">One-hour minimum on hourly services, then billed in 15-minute increments. The diagnostic fee is credited toward your repair when you proceed with the recommended work.</p>
+    </div>
+  </section>
+
+  <!-- Projects & Creative -->
+  <section class="section-padded">
+    <div class="container-content">
+      <div class="mb-8 reveal">
+        <h2 class="font-display text-display-md text-brown ruled-heading mb-2">Projects & Creative</h2>
+        <p class="text-body text-brown-light">Scoped individually so you only pay for what your project needs.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mb-8 reveal reveal-delay-1">
+        {[
+          'New device & workstation setup',
+          'Website design & maintenance',
+          'Network design, installation & Wi-Fi',
+          'Graphic design & branding',
+          'Data backup & recovery solutions',
+          'Email & cloud migration',
+        ].map(item => (
+          <div class="flex gap-2 text-body text-sm"><span class="text-rose-deep font-bold">+</span>{item}</div>
+        ))}
+      </div>
+      <p class="text-body text-sm text-brown-light italic reveal reveal-delay-2">Every project gets a written estimate before any work begins — quotes are always free.</p>
     </div>
   </section>
 
