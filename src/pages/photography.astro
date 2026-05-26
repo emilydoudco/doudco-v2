@@ -26,6 +26,71 @@ import { CONTACT_URL } from '../config/contact';
     </div>
   </section>
 
+  <!-- Sessions -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">What I Shoot</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Portraits & People -->
+        <div class="reveal reveal-delay-1">
+          <p class="text-label mb-4">Portraits & People</p>
+          <ul class="space-y-4">
+            {[
+              { title: 'Senior portraits',              desc: 'Marking the milestone with images that capture your graduate\'s personality' },
+              { title: 'Individual & personal portraits', desc: 'Updated photos for any purpose or occasion' },
+              { title: 'Family photography',            desc: 'Relaxed, natural sessions that capture your family as it is right now' },
+              { title: 'Couples & engagement sessions', desc: 'For the moments worth remembering' },
+              { title: 'Maternity & newborn',           desc: 'Gentle sessions documenting a new chapter' },
+              { title: 'Pet photography',               desc: 'Because they\'re family too' },
+            ].map(item => (
+              <li>
+                <p class="font-serif text-brown">{item.title}</p>
+                <p class="text-body text-sm">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Professional & Business -->
+        <div class="reveal reveal-delay-2">
+          <p class="text-label mb-4">Professional & Business</p>
+          <ul class="space-y-4">
+            {[
+              { title: 'Professional headshots',        desc: 'Polished, current images for LinkedIn, websites, and bios' },
+              { title: 'Team & group headshots',        desc: 'Consistent, professional photos for your whole staff' },
+              { title: 'Business & brand photography',  desc: 'Product, marketing, and storytelling images for your business' },
+              { title: 'Real estate & property',        desc: 'Bright, well-composed listing photos that help properties sell' },
+            ].map(item => (
+              <li>
+                <p class="font-serif text-brown">{item.title}</p>
+                <p class="text-body text-sm">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Events -->
+        <div class="reveal reveal-delay-3">
+          <p class="text-label mb-4">Events</p>
+          <ul class="space-y-4">
+            {[
+              { title: 'Private events & celebrations', desc: 'Parties, anniversaries, reunions, and gatherings' },
+              { title: 'Corporate events & conferences', desc: 'Professional coverage of your business events' },
+              { title: 'Graduation & school events',    desc: 'Capturing the day for students and families' },
+            ].map(item => (
+              <li>
+                <p class="font-serif text-brown">{item.title}</p>
+                <p class="text-body text-sm">{item.desc}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Portrait section -->
   <section class="section-padded">
     <div class="container-content">
