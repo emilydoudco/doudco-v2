@@ -238,6 +238,7 @@ import { CONTACT_URL } from '../config/contact';
                 { src: '/images/photography/news-1.jpg', alt: 'On the scene' },
                 { src: '/images/photography/news-2.jpg', alt: 'On the scene' },
                 { src: '/images/photography/news-3.jpg', alt: 'On the scene' },
+                { src: '/images/photography/news-4.jpg', alt: 'Rodeo' },
               ].map((photo, i) => (
                 <button
                   class={`news-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
@@ -253,7 +254,7 @@ import { CONTACT_URL } from '../config/contact';
             <button id="news-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
           </div>
           <div id="news-dots" class="flex justify-center gap-2 mt-3">
-            {[0,1,2].map(i => (
+            {[0,1,2,3].map(i => (
               <button
                 class={`news-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-rose-deep/20'}`}
                 data-index={i}
