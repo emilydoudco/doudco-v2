@@ -140,59 +140,6 @@ import { CONTACT_URL } from '../config/contact';
 
 
   <!-- ═══════════════════════════════════════════════
-       FEATURED: SOC LAB TEASER
-  ═══════════════════════════════════════════════ -->
-  <section class="section-padded">
-    <div class="container-content">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-
-        <!-- Text -->
-        <div>
-          <p class="text-label mb-4 reveal">Featured Work</p>
-          <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal reveal-delay-1">
-            The SOC Lab
-          </h2>
-          <p class="text-body-lg mb-4 reveal reveal-delay-2">
-            A hands-on home lab where I simulate, detect, and document security incidents —
-            building real-world skills one writeup at a time.
-          </p>
-          <p class="text-body mb-8 reveal reveal-delay-2">
-            From Splunk dashboards to log analysis, these writeups are the technical backbone
-            of my security portfolio. Honest, detailed, and approachable.
-          </p>
-          <div class="flex flex-wrap gap-3 mb-8 reveal reveal-delay-3">
-            <span class="tag-rose">SIEM</span>
-            <span class="tag-sage">Splunk</span>
-            <span class="tag-brown">Log Analysis</span>
-            <span class="tag-rose">Incident Response</span>
-          </div>
-          <a href="/soc-lab" class="btn-primary reveal reveal-delay-3">
-            Explore the Lab →
-          </a>
-        </div>
-
-        <!-- Visual placeholder -->
-        <div class="reveal reveal-delay-2">
-          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brown-deep via-brown to-brown-mid overflow-hidden relative shadow-card-hover">
-            <!-- Terminal-style decorative element -->
-            <div class="absolute inset-0 p-6 font-mono text-xs text-sage-light/60 leading-relaxed select-none">
-              <p class="text-rose-light/80 mb-1">$ tail -f /var/log/syslog</p>
-              <p class="opacity-60">May 10 09:32:11 host sshd[1234]: Failed password for invalid user admin</p>
-              <p class="opacity-60">May 10 09:32:12 host sshd[1234]: Failed password for invalid user root</p>
-              <p class="text-sage-light/90">May 10 09:32:13 host sshd[1234]: <span class="text-rose-light">ALERT</span> brute force detected</p>
-              <p class="opacity-40">May 10 09:32:14 host iptables: BLOCK src=203.0.113.42</p>
-              <p class="mt-4 text-sage-light/80">$ splunk search index=main earliest=-24h<br/>&nbsp;&nbsp;| stats count by src_ip<br/>&nbsp;&nbsp;| sort -count</p>
-              <div class="mt-2 w-2 h-4 bg-rose-light/80 animate-pulse inline-block"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════════════════════════
        CASE STUDIES TEASER
   ═══════════════════════════════════════════════ -->
   <section class="section-padded bg-cream-50 border-y border-cream-200">
@@ -272,6 +219,56 @@ import { CONTACT_URL } from '../config/contact';
           <a href="/operation-closet-computer" class="btn-ghost reveal reveal-delay-3">
             Learn More →
           </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SOC LAB TEASER
+  ═══════════════════════════════════════════════ -->
+  <section class="section-padded">
+    <div class="container-content">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+        <div>
+          <p class="text-label mb-4 reveal">Security Practice</p>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal reveal-delay-1">
+            The SOC Lab
+          </h2>
+          <p class="text-body-lg mb-4 reveal reveal-delay-2">
+            A hands-on home lab where I simulate, detect, and document security incidents —
+            building real-world skills one writeup at a time.
+          </p>
+          <p class="text-body mb-8 reveal reveal-delay-2">
+            From Splunk dashboards to log analysis, these writeups are the technical backbone
+            of my security portfolio. Honest, detailed, and approachable.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-8 reveal reveal-delay-3">
+            <span class="tag-rose">SIEM</span>
+            <span class="tag-sage">Splunk</span>
+            <span class="tag-brown">Log Analysis</span>
+            <span class="tag-rose">Incident Response</span>
+          </div>
+          <a href="/soc-lab" class="btn-primary reveal reveal-delay-3">
+            Explore the Lab →
+          </a>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-brown-deep via-brown to-brown-mid overflow-hidden relative shadow-card-hover">
+            <div class="absolute inset-0 p-6 font-mono text-xs text-sage-light/60 leading-relaxed select-none">
+              <p class="text-rose-light/80 mb-1">$ tail -f /var/log/syslog</p>
+              <p class="opacity-60">May 10 09:32:11 host sshd[1234]: Failed password for invalid user admin</p>
+              <p class="opacity-60">May 10 09:32:12 host sshd[1234]: Failed password for invalid user root</p>
+              <p class="text-sage-light/90">May 10 09:32:13 host sshd[1234]: <span class="text-rose-light">ALERT</span> brute force detected</p>
+              <p class="opacity-40">May 10 09:32:14 host iptables: BLOCK src=203.0.113.42</p>
+              <p class="mt-4 text-sage-light/80">$ splunk search index=main earliest=-24h<br/>&nbsp;&nbsp;| stats count by src_ip<br/>&nbsp;&nbsp;| sort -count</p>
+              <div class="mt-2 w-2 h-4 bg-rose-light/80 animate-pulse inline-block"></div>
+            </div>
+          </div>
         </div>
 
       </div>
