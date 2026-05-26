@@ -1,0 +1,75 @@
+---
+import Page from '../layouts/Page.astro';
+import { CONTACT_URL } from '../config/contact';
+
+const services = [
+  { title: 'Hardware Diagnostics',   desc: 'Troubleshooting desktops, laptops, and peripherals — from boot failures to hardware assessment.' },
+  { title: 'OS Install & Recovery',  desc: 'Full wipes, fresh installs, and recovery for Windows and macOS systems.' },
+  { title: 'Network Troubleshooting', desc: 'Diagnosing connectivity issues, router configuration, and basic network setup.' },
+  { title: 'Security Hardening',     desc: 'Removing malware, updating systems, and setting up basic security best practices.' },
+  { title: 'Data Backup & Transfer', desc: 'Safely migrating files, setting up backup solutions, and recovering accessible data.' },
+  { title: 'General Tech Support',   desc: 'Software installs, printer setup, email configuration, and everyday tech problems.' },
+];
+---
+
+<Page title="IT Support" description="Hands-on IT support for individuals and small businesses — diagnostics, repair, and tech help by Emily Rose Doud.">
+
+  <!-- Hero -->
+  <section class="section-padded pb-section-sm">
+    <div class="container-content">
+      <p class="text-label mb-4 reveal">Services</p>
+      <h1 class="font-display text-display-lg text-brown mb-6 reveal reveal-delay-1">IT Support</h1>
+      <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
+        Hands-on tech help for individuals and small businesses. Whether your computer won't
+        start or you just need someone who speaks plain English — I've got you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">What I Can Help With</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((s, i) => (
+          <div class={`card p-6 reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <h3 class="font-serif text-lg text-brown mb-2">{s.title}</h3>
+            <p class="text-body text-sm">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section-padded">
+    <div class="container-content">
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Pricing</h2>
+      <div class="card p-10 max-w-2xl reveal reveal-delay-1">
+        <p class="text-body-lg text-brown/50 italic">Pricing coming soon — reach out for a quote.</p>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={CONTACT_URL}
+          class="btn-primary mt-8 inline-flex"
+        >
+          Email for Pricing →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padded bg-cream-50 border-t border-cream-200">
+    <div class="container-content text-center">
+      <h2 class="font-display text-display-md text-brown mb-6 reveal">Need Help?</h2>
+      <p class="text-body-lg max-w-md mx-auto mb-8 reveal reveal-delay-1">
+        Describe what's going on and I'll let you know if I can help — no jargon, no pressure.
+      </p>
+      <a target="_blank" rel="noopener noreferrer" href={CONTACT_URL} class="btn-primary reveal reveal-delay-2">
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+
+</Page>
