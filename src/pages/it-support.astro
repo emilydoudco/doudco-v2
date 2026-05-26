@@ -44,17 +44,19 @@ const services = [
   <!-- Pricing -->
   <section class="section-padded">
     <div class="container-content">
-      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Pricing</h2>
-      <div class="card p-10 max-w-2xl reveal reveal-delay-1">
-        <p class="text-body-lg text-brown/50 italic">Pricing coming soon — reach out for a quote.</p>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={CONTACT_URL}
-          class="btn-primary mt-8 inline-flex"
-        >
-          Email for Pricing →
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-4 reveal">Rate Sheet</h2>
+      <p class="text-body mb-8 reveal reveal-delay-1">
+        <a href="/Layer8Support-RateSheet.pdf" target="_blank" rel="noopener noreferrer" class="text-rose-deep hover:underline">
+          Download PDF ↓
         </a>
+      </p>
+      <div class="reveal reveal-delay-2 w-full rounded-xl overflow-hidden shadow-card border border-cream-200">
+        <iframe
+          src="/Layer8Support-RateSheet.pdf"
+          class="w-full"
+          style="height: 80vh; min-height: 600px;"
+          title="Layer 8 Support Rate Sheet"
+        ></iframe>
       </div>
     </div>
   </section>
