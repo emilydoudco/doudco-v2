@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cp \"/c/Users/emily/OneDrive/Desktop/cover.jpg\" \"/c/Users/emily/Projects/doudco-v2/public/images/case-studies/missing-os/cover.jpg\" && echo \"copied\")"
+      "Bash(cp \"/c/Users/emily/OneDrive/Desktop/cover.jpg\" \"/c/Users/emily/Projects/doudco-v2/public/images/case-studies/missing-os/cover.jpg\" && echo \"copied\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(cp \"C:\\\\Users\\\\emily\\\\OneDrive\\\\Desktop\\\\Logo blue.jpg\" \"C:\\\\Users\\\\emily\\\\Projects\\\\doudco-v2\\\\public\\\\images\\\\photography-logo.jpg\")",
+      "Bash(git push *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\emily\\OneDrive\\Desktop"
