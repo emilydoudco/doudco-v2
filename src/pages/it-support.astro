@@ -41,6 +41,38 @@ const services = [
     </div>
   </section>
 
+  <!-- Hourly & As-Needed -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <div class="mb-10 reveal">
+        <h2 class="font-display text-display-md text-brown ruled-heading mb-2">Hourly & As-Needed</h2>
+        <p class="text-body text-brown-light">For one-off fixes, upgrades, and clients not on a managed plan.</p>
+      </div>
+
+      <div class="space-y-4 max-w-3xl reveal reveal-delay-1">
+        {[
+          { label: 'Business IT Support',            desc: 'Troubleshooting, repairs, setup & configuration',         price: '$75',  unit: '/ hr' },
+          { label: 'Residential & Home Office',      desc: 'Computers, networks, and devices for home users',         price: '$60',  unit: '/ hr' },
+          { label: 'Cybersecurity Services',         desc: 'Security assessments, hardening, incident response',      price: '$110', unit: '/ hr' },
+          { label: 'After-Hours & Emergency Support',desc: 'Evenings, weekends, and urgent same-day response',        price: '$110', unit: '/ hr' },
+          { label: 'Diagnostic & Assessment',        desc: 'Full review of the issue with a clear repair plan',       price: '$89',  unit: 'flat' },
+        ].map(row => (
+          <div class="flex items-center justify-between gap-4 py-4 border-b border-cream-200 last:border-0">
+            <div>
+              <p class="font-serif text-lg text-brown">{row.label}</p>
+              <p class="text-body text-sm">{row.desc}</p>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-display text-2xl text-rose-deep">{row.price}</span>
+              <span class="text-label ml-1">{row.unit}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-body text-sm text-brown-light italic mt-6 max-w-2xl reveal reveal-delay-2">One-hour minimum on hourly services, then billed in 15-minute increments. The diagnostic fee is credited toward your repair when you proceed with the recommended work.</p>
+    </div>
+  </section>
+
   <!-- Managed IT Plans -->
   <section class="section-padded">
     <div class="container-content">
@@ -91,38 +123,6 @@ const services = [
         </div>
       </div>
       <p class="text-body text-sm text-brown-light italic reveal reveal-delay-2">Plans billed monthly · 3-user minimum · Custom plans available for larger teams and multi-site offices.</p>
-    </div>
-  </section>
-
-  <!-- Hourly & As-Needed -->
-  <section class="section-padded bg-cream-50 border-y border-cream-200">
-    <div class="container-content">
-      <div class="mb-10 reveal">
-        <h2 class="font-display text-display-md text-brown ruled-heading mb-2">Hourly & As-Needed</h2>
-        <p class="text-body text-brown-light">For one-off fixes, upgrades, and clients not on a managed plan.</p>
-      </div>
-
-      <div class="space-y-4 max-w-3xl reveal reveal-delay-1">
-        {[
-          { label: 'Business IT Support',            desc: 'Troubleshooting, repairs, setup & configuration',         price: '$75',  unit: '/ hr' },
-          { label: 'Residential & Home Office',      desc: 'Computers, networks, and devices for home users',         price: '$60',  unit: '/ hr' },
-          { label: 'Cybersecurity Services',         desc: 'Security assessments, hardening, incident response',      price: '$110', unit: '/ hr' },
-          { label: 'After-Hours & Emergency Support',desc: 'Evenings, weekends, and urgent same-day response',        price: '$110', unit: '/ hr' },
-          { label: 'Diagnostic & Assessment',        desc: 'Full review of the issue with a clear repair plan',       price: '$89',  unit: 'flat' },
-        ].map(row => (
-          <div class="flex items-center justify-between gap-4 py-4 border-b border-cream-200 last:border-0">
-            <div>
-              <p class="font-serif text-lg text-brown">{row.label}</p>
-              <p class="text-body text-sm">{row.desc}</p>
-            </div>
-            <div class="text-right shrink-0">
-              <span class="font-display text-2xl text-rose-deep">{row.price}</span>
-              <span class="text-label ml-1">{row.unit}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <p class="text-body text-sm text-brown-light italic mt-6 max-w-2xl reveal reveal-delay-2">One-hour minimum on hourly services, then billed in 15-minute increments. The diagnostic fee is credited toward your repair when you proceed with the recommended work.</p>
     </div>
   </section>
 
