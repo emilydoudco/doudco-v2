@@ -84,6 +84,36 @@ import { CONTACT_URL } from '../config/contact';
 
 
   <!-- ═══════════════════════════════════════════════
+       VINTAGE TICKER
+  ═══════════════════════════════════════════════ -->
+  <div class="bg-brown border-y border-brown-mid overflow-hidden py-3 select-none" aria-hidden="true">
+    <div class="flex whitespace-nowrap" style="animation: ticker 30s linear infinite;">
+      {[1, 2].map(() => (
+        <span class="flex items-center shrink-0">
+          {[
+            'IT Support', 'Mobile Photo Studio', 'Graphic Design',
+            'Cybersecurity', 'Waupaca County', 'Layer 8 Support',
+            'Senior Portraits', 'Brand Photography', 'Headshots',
+            'Network Troubleshooting', 'Wisconsin', 'Doud Co.',
+          ].map(item => (
+            <span class="flex items-center gap-4 px-4">
+              <span class="font-serif text-sm tracking-widest text-cream/70 italic">{item}</span>
+              <span class="text-rose-deep/60 text-xs">✦</span>
+            </span>
+          ))}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <style>
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+
+  <!-- ═══════════════════════════════════════════════
        SERVICES STRIP
   ═══════════════════════════════════════════════ -->
   <section class="border-y border-cream-200 bg-cream-50 overflow-hidden">
