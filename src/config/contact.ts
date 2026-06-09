@@ -1,4 +1,4 @@
-const email = 'layer8support@gmail.com';
+const email = 'pixelandpatch.123@gmail.com';
 
 const body = [
   'Type of inquiry: IT or Creative',
