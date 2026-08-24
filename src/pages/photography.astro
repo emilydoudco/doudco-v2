@@ -118,51 +118,79 @@ import { CONTACT_URL } from '../config/contact';
           </p>
         </div>
 
-        <!-- Portrait carousel -->
+        <!-- Portrait carousel of carousels -->
         <div class="reveal reveal-delay-1">
-          <div id="carousel" class="relative rounded-xl overflow-hidden">
-            <!-- Slides -->
-            <div id="carousel-track" class="relative aspect-[3/4]">
-              {[
-                { src: '/images/photography/cover.jpg',    alt: 'Portrait' },
-                { src: '/images/photography/marley-1-edited.jpg', alt: 'Portrait — Marley' },
-                { src: '/images/photography/marley-2-edited.jpg', alt: 'Portrait — Marley' },
-                { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
-                { src: '/images/photography/portrait-5.jpg', alt: 'Portrait' },
-                { src: '/images/photography/portrait-6.jpg', alt: 'Pet portrait' },
-                { src: '/images/photography/for-site-1.jpg', alt: 'Portrait' },
-                { src: '/images/photography/for-site-2.jpg', alt: 'Portrait' },
-                { src: '/images/photography/portrait-7.jpg', alt: 'Portrait' },
-                { src: '/images/photography/portrait-8.jpg', alt: 'Portrait' },
-                { src: '/images/photography/cover-new.jpg',      alt: 'Portrait' },
-                { src: '/images/photography/cover-option-2.jpg', alt: 'Portrait' },
-              ].map((photo, i) => (
-                <button
-                  class={`carousel-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
-                  data-src={photo.src}
-                  data-alt={photo.alt}
-                  aria-label={`View full size: ${photo.alt}`}
-                >
-                  <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
-                </button>
+
+          <!-- Gallery 1 -->
+          <div id="portrait-page-0" class="portrait-page">
+            <div id="carousel-0" class="relative rounded-xl overflow-hidden">
+              <div class="relative aspect-[3/4]">
+                {[
+                  { src: '/images/photography/cover.jpg',           alt: 'Portrait' },
+                  { src: '/images/photography/marley-1-edited.jpg', alt: 'Portrait — Marley' },
+                  { src: '/images/photography/marley-2-edited.jpg', alt: 'Portrait — Marley' },
+                  { src: '/images/photography/claire-1.jpg',        alt: 'Portrait — Claire' },
+                  { src: '/images/photography/portrait-5.jpg',      alt: 'Portrait' },
+                  { src: '/images/photography/portrait-6.jpg',      alt: 'Pet portrait' },
+                ].map((photo, i) => (
+                  <button
+                    class={`p0-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                    data-src={photo.src} data-alt={photo.alt}
+                    aria-label={`View full size: ${photo.alt}`}
+                  >
+                    <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+              <button id="carousel-0-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
+              <button id="carousel-0-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
+            </div>
+            <div class="flex justify-center gap-2 mt-3">
+              {[0,1,2,3,4,5].map(i => (
+                <button class={`p0-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`} data-index={i} aria-label={`Go to photo ${i + 1}`}></button>
               ))}
             </div>
-
-            <!-- Prev / Next arrows -->
-            <button id="carousel-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
-            <button id="carousel-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
           </div>
 
-          <!-- Dot indicators -->
-          <div id="carousel-dots" class="flex justify-center gap-2 mt-3">
-            {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => (
-              <button
-                class={`carousel-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`}
-                data-index={i}
-                aria-label={`Go to photo ${i + 1}`}
-              ></button>
-            ))}
+          <!-- Gallery 2 -->
+          <div id="portrait-page-1" class="portrait-page hidden">
+            <div id="carousel-1" class="relative rounded-xl overflow-hidden">
+              <div class="relative aspect-[3/4]">
+                {[
+                  { src: '/images/photography/for-site-1.jpg',      alt: 'Portrait' },
+                  { src: '/images/photography/for-site-2.jpg',      alt: 'Portrait' },
+                  { src: '/images/photography/portrait-7.jpg',      alt: 'Portrait' },
+                  { src: '/images/photography/portrait-8.jpg',      alt: 'Portrait' },
+                  { src: '/images/photography/cover-new.jpg',       alt: 'Portrait' },
+                  { src: '/images/photography/cover-option-2.jpg',  alt: 'Portrait' },
+                ].map((photo, i) => (
+                  <button
+                    class={`p1-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                    data-src={photo.src} data-alt={photo.alt}
+                    aria-label={`View full size: ${photo.alt}`}
+                  >
+                    <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+              <button id="carousel-1-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
+              <button id="carousel-1-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
+            </div>
+            <div class="flex justify-center gap-2 mt-3">
+              {[0,1,2,3,4,5].map(i => (
+                <button class={`p1-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`} data-index={i} aria-label={`Go to photo ${i + 1}`}></button>
+              ))}
+            </div>
           </div>
+
+          <!-- Gallery switcher -->
+          <div class="flex items-center justify-center gap-4 mt-5">
+            <button id="gallery-prev" class="text-brown-light hover:text-rose-deep transition-colors text-xl leading-none">&#8249;</button>
+            <button class="gallery-btn w-2 h-2 rounded-full bg-rose-deep transition-colors" data-page="0" aria-label="Gallery 1"></button>
+            <button class="gallery-btn w-2 h-2 rounded-full bg-brown/20 transition-colors" data-page="1" aria-label="Gallery 2"></button>
+            <button id="gallery-next" class="text-brown-light hover:text-rose-deep transition-colors text-xl leading-none">&#8250;</button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -320,34 +348,55 @@ import { CONTACT_URL } from '../config/contact';
 </div>
 
 <script>
-  // ── Carousel ──
-  const slides   = document.querySelectorAll<HTMLElement>('.carousel-slide');
-  const dots     = document.querySelectorAll<HTMLElement>('.carousel-dot');
-  const prevBtn  = document.getElementById('carousel-prev')!;
-  const nextBtn  = document.getElementById('carousel-next')!;
-  const carousel = document.getElementById('carousel')!;
-  let current    = 0;
-  let timer: ReturnType<typeof setInterval>;
+  // ── Portrait gallery (carousel of carousels) ──
+  function makeCarousel(pageIndex: number) {
+    const slides    = document.querySelectorAll<HTMLElement>(`.p${pageIndex}-slide`);
+    const dots      = document.querySelectorAll<HTMLElement>(`.p${pageIndex}-dot`);
+    const prev      = document.getElementById(`carousel-${pageIndex}-prev`)!;
+    const next      = document.getElementById(`carousel-${pageIndex}-next`)!;
+    const container = document.getElementById(`carousel-${pageIndex}`)!;
+    let current = 0;
+    let timer: ReturnType<typeof setInterval>;
 
-  function goTo(index: number) {
-    slides[current].classList.replace('opacity-100', 'opacity-0');
-    dots[current].classList.replace('bg-rose-deep', 'bg-brown/20');
-    current = (index + slides.length) % slides.length;
-    slides[current].classList.replace('opacity-0', 'opacity-100');
-    dots[current].classList.replace('bg-brown/20', 'bg-rose-deep');
+    function goTo(index: number) {
+      slides[current].classList.replace('opacity-100', 'opacity-0');
+      dots[current].classList.replace('bg-rose-deep', 'bg-brown/20');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.replace('opacity-0', 'opacity-100');
+      dots[current].classList.replace('bg-brown/20', 'bg-rose-deep');
+    }
+
+    function start() { timer = setInterval(() => goTo(current + 1), 4000); }
+    function stop()  { clearInterval(timer); }
+
+    prev.addEventListener('click', (e) => { e.stopPropagation(); stop(); goTo(current - 1); start(); });
+    next.addEventListener('click', (e) => { e.stopPropagation(); stop(); goTo(current + 1); start(); });
+    dots.forEach(dot => dot.addEventListener('click', () => { stop(); goTo(Number(dot.dataset.index)); start(); }));
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', start);
+
+    return { start, stop };
   }
 
-  function startAuto() { timer = setInterval(() => goTo(current + 1), 4000); }
-  function stopAuto()  { clearInterval(timer); }
+  const carousels = [makeCarousel(0), makeCarousel(1)];
+  const pages     = [document.getElementById('portrait-page-0')!, document.getElementById('portrait-page-1')!];
+  const galleryBtns = document.querySelectorAll<HTMLElement>('.gallery-btn');
+  let activePage  = 0;
+  carousels[0].start();
 
-  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); stopAuto(); goTo(current - 1); startAuto(); });
-  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); stopAuto(); goTo(current + 1); startAuto(); });
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => { stopAuto(); goTo(Number(dot.dataset.index)); startAuto(); });
-  });
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-  startAuto();
+  function switchPage(index: number) {
+    carousels[activePage].stop();
+    pages[activePage].classList.add('hidden');
+    galleryBtns[activePage].classList.replace('bg-rose-deep', 'bg-brown/20');
+    activePage = (index + pages.length) % pages.length;
+    pages[activePage].classList.remove('hidden');
+    galleryBtns[activePage].classList.replace('bg-brown/20', 'bg-rose-deep');
+    carousels[activePage].start();
+  }
+
+  document.getElementById('gallery-prev')!.addEventListener('click', () => switchPage(activePage - 1));
+  document.getElementById('gallery-next')!.addEventListener('click', () => switchPage(activePage + 1));
+  galleryBtns.forEach(btn => btn.addEventListener('click', () => switchPage(Number(btn.dataset.page))));
 
   // ── Landscape Carousel ──
   const lSlides  = document.querySelectorAll<HTMLElement>('.landscape-slide');
