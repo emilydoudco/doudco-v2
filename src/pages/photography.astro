@@ -326,6 +326,54 @@ import { CONTACT_URL } from '../config/contact';
     </div>
   </section>
 
+  <!-- Pet Photos section -->
+  <section class="section-padded bg-cream-50 border-y border-cream-200">
+    <div class="container-content">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+
+        <div>
+          <p class="text-label mb-3 reveal">Furry Friends</p>
+          <h2 class="font-display text-display-md text-brown ruled-heading mb-6 reveal reveal-delay-1">
+            Pet Photos
+          </h2>
+          <p class="text-body-lg reveal reveal-delay-2">
+            Because they're family too. Capturing the personality and charm of your pets —
+            from sleepy afternoons to full-speed zoomies.
+          </p>
+        </div>
+
+        <!-- Pet carousel -->
+        <div class="reveal reveal-delay-1">
+          <div id="pet-carousel" class="relative rounded-xl overflow-hidden">
+            <div class="relative aspect-[3/4]">
+              {[
+                { src: '/images/photography/pup.jpg',   alt: 'Pet portrait' },
+                { src: '/images/photography/pup-1.jpg', alt: 'Pet portrait' },
+                { src: '/images/photography/pup-3.jpg', alt: 'Pet portrait' },
+              ].map((photo, i) => (
+                <button
+                  class={`pet-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+                  data-src={photo.src} data-alt={photo.alt}
+                  aria-label={`View full size: ${photo.alt}`}
+                >
+                  <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+            <button id="pet-prev" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8249;</button>
+            <button id="pet-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
+          </div>
+          <div class="flex justify-center gap-2 mt-3">
+            {[0,1,2].map(i => (
+              <button class={`pet-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`} data-index={i} aria-label={`Go to photo ${i + 1}`}></button>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="section-padded">
     <div class="container-content text-center">
@@ -454,6 +502,35 @@ import { CONTACT_URL } from '../config/contact';
   nCarousel.addEventListener('mouseenter', nStop);
   nCarousel.addEventListener('mouseleave', nStart);
   nStart();
+
+  // ── Pet Carousel ──
+  const petSlides  = document.querySelectorAll<HTMLElement>('.pet-slide');
+  const petDots    = document.querySelectorAll<HTMLElement>('.pet-dot');
+  const petPrev    = document.getElementById('pet-prev')!;
+  const petNext    = document.getElementById('pet-next')!;
+  const petCarousel = document.getElementById('pet-carousel')!;
+  let petCurrent   = 0;
+  let petTimer: ReturnType<typeof setInterval>;
+
+  function petGoTo(index: number) {
+    petSlides[petCurrent].classList.replace('opacity-100', 'opacity-0');
+    petDots[petCurrent].classList.replace('bg-rose-deep', 'bg-brown/20');
+    petCurrent = (index + petSlides.length) % petSlides.length;
+    petSlides[petCurrent].classList.replace('opacity-0', 'opacity-100');
+    petDots[petCurrent].classList.replace('bg-brown/20', 'bg-rose-deep');
+  }
+
+  function petStart() { petTimer = setInterval(() => petGoTo(petCurrent + 1), 4000); }
+  function petStop()  { clearInterval(petTimer); }
+
+  petPrev.addEventListener('click', (e) => { e.stopPropagation(); petStop(); petGoTo(petCurrent - 1); petStart(); });
+  petNext.addEventListener('click', (e) => { e.stopPropagation(); petStop(); petGoTo(petCurrent + 1); petStart(); });
+  petDots.forEach(dot => {
+    dot.addEventListener('click', () => { petStop(); petGoTo(Number(dot.dataset.index)); petStart(); });
+  });
+  petCarousel.addEventListener('mouseenter', petStop);
+  petCarousel.addEventListener('mouseleave', petStart);
+  petStart();
 
   // ── Lightbox ──
   const lightbox = document.getElementById('lightbox')!;
