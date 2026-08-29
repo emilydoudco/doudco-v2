@@ -121,17 +121,17 @@ import { CONTACT_URL } from '../config/contact';
         <!-- Portrait carousel of carousels -->
         <div class="reveal reveal-delay-1">
 
-          <!-- Gallery 1 -->
+          <!-- Gallery 1: Claire 1–6 -->
           <div id="portrait-page-0" class="portrait-page">
             <div id="carousel-0" class="relative rounded-xl overflow-hidden">
               <div class="relative aspect-[3/4]">
                 {[
-                  { src: '/images/photography/cover.jpg',           alt: 'Portrait' },
-                  { src: '/images/photography/marley-1-edited.jpg', alt: 'Portrait — Marley' },
-                  { src: '/images/photography/marley-2-edited.jpg', alt: 'Portrait — Marley' },
-                  { src: '/images/photography/claire-1.jpg',        alt: 'Portrait — Claire' },
-                  { src: '/images/photography/portrait-5.jpg',      alt: 'Portrait' },
-                  { src: '/images/photography/portrait-6.jpg',      alt: 'Pet portrait' },
+                  { src: '/images/photography/claire-1.jpg', alt: 'Portrait — Claire' },
+                  { src: '/images/photography/claire-2.jpg', alt: 'Portrait — Claire' },
+                  { src: '/images/photography/claire-3.jpg', alt: 'Portrait — Claire' },
+                  { src: '/images/photography/claire-4.jpg', alt: 'Portrait — Claire' },
+                  { src: '/images/photography/claire-5.jpg', alt: 'Portrait — Claire' },
+                  { src: '/images/photography/claire-6.jpg', alt: 'Portrait — Claire' },
                 ].map((photo, i) => (
                   <button
                     class={`p0-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
@@ -152,17 +152,15 @@ import { CONTACT_URL } from '../config/contact';
             </div>
           </div>
 
-          <!-- Gallery 2 -->
+          <!-- Gallery 2: Claire 7, Cassie, Marley 1 & 2 edited -->
           <div id="portrait-page-1" class="portrait-page hidden">
             <div id="carousel-1" class="relative rounded-xl overflow-hidden">
               <div class="relative aspect-[3/4]">
                 {[
-                  { src: '/images/photography/for-site-1.jpg',      alt: 'Portrait' },
-                  { src: '/images/photography/for-site-2.jpg',      alt: 'Portrait' },
-                  { src: '/images/photography/portrait-7.jpg',      alt: 'Portrait' },
-                  { src: '/images/photography/portrait-8.jpg',      alt: 'Portrait' },
-                  { src: '/images/photography/cover-new.jpg',       alt: 'Portrait' },
-                  { src: '/images/photography/cover-option-2.jpg',  alt: 'Portrait' },
+                  { src: '/images/photography/claire-7.jpg',        alt: 'Portrait — Claire' },
+                  { src: '/images/photography/cassie.jpg',           alt: 'Portrait — Cassie' },
+                  { src: '/images/photography/marley-1-edited.jpg',  alt: 'Portrait — Marley' },
+                  { src: '/images/photography/marley-2-edited.jpg',  alt: 'Portrait — Marley' },
                 ].map((photo, i) => (
                   <button
                     class={`p1-slide lightbox-trigger absolute inset-0 w-full h-full transition-opacity duration-700 cursor-zoom-in ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
@@ -177,7 +175,7 @@ import { CONTACT_URL } from '../config/contact';
               <button id="carousel-1-next" aria-label="Next photo"     class="absolute right-2 top-1/2 -translate-y-1/2 bg-cream/80 hover:bg-cream text-brown rounded-full w-9 h-9 flex items-center justify-center shadow transition-colors">&#8250;</button>
             </div>
             <div class="flex justify-center gap-2 mt-3">
-              {[0,1,2,3,4,5].map(i => (
+              {[0,1,2,3].map(i => (
                 <button class={`p1-dot w-2 h-2 rounded-full transition-colors ${i === 0 ? 'bg-rose-deep' : 'bg-brown/20'}`} data-index={i} aria-label={`Go to photo ${i + 1}`}></button>
               ))}
             </div>
