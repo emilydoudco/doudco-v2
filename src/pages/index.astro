@@ -38,21 +38,20 @@ import { CONTACT_URL } from '../config/contact';
 
         <!-- Copy -->
         <div>
-          <p class="text-label mb-6 reveal">IT · Security · Creative Services</p>
+          <p class="text-label mb-6 reveal">Writing · Photography</p>
 
           <h1 class="font-display text-display-xl text-brown leading-[1.05] mb-6 reveal reveal-delay-1">
             DOUD <em class="text-rose-deep not-italic">Co.</em>
           </h1>
 
           <p class="text-body-lg max-w-md mb-10 reveal reveal-delay-2">
-            Hi, I'm Emily — IT specialist, security enthusiast, and visual storyteller.
-            Doud Co. is where <em>technical rigor</em> meets <em>creative eye</em>.
+            Hi, I'm Emily — freelance writer, journalist, and photographer.
+            Doud Co. is where <em>words</em> meet <em>images</em>.
           </p>
 
           <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
             <a href="/about" class="btn-primary">Meet Emily</a>
             <a href="/photography" class="btn-ghost">Photography</a>
-            <a href="/it-support" class="btn-ghost">IT Support</a>
           </div>
         </div>
 
@@ -91,10 +90,10 @@ import { CONTACT_URL } from '../config/contact';
       {[1, 2].map(() => (
         <span class="flex items-center shrink-0">
           {[
-            'IT Support', 'Photography', 'Graphic Design',
-            'Cybersecurity', 'Emily Doud Photography', 'Senior Portraits',
-            'Brand Photography', 'Headshots', 'Network Troubleshooting',
-            'Posters', 'Mailers', 'Company Newsletters',
+            'Freelance Writing', 'Photography', 'Journalism',
+            'Emily Doud Photography', 'Senior Portraits', 'Waupaca County Post',
+            'Brand Photography', 'Headshots', 'Storytelling',
+            'Portrait Sessions', 'Feature Writing', 'Creative Writing',
           ].map(item => (
             <span class="flex items-center gap-4 px-6">
               <span class="font-serif text-xl font-bold tracking-widest text-cream italic">{item}</span>
@@ -120,14 +119,14 @@ import { CONTACT_URL } from '../config/contact';
     <div class="section-padded py-16">
       <div class="container-content">
         <p class="text-label text-center mb-10 reveal">What I Do</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
 
           {[
             {
-              icon: '🛡',
-              label: 'IT Support',
-              desc: 'Hardware diagnostics, OS installs, network troubleshooting, and everyday tech help.',
-              href: '/it-support',
+              icon: '✍️',
+              label: 'Writing',
+              desc: 'Freelance journalism, feature writing, and creative work. Currently contributing to the Waupaca County Post.',
+              href: '#writing',
               color: 'from-rose-pale to-cream',
             },
             {
@@ -136,13 +135,6 @@ import { CONTACT_URL } from '../config/contact';
               desc: 'Editorial, portrait, and lifestyle photography with a warm, intentional eye.',
               href: '/photography',
               color: 'from-cream-200 to-cream',
-            },
-            {
-              icon: '✦',
-              label: 'Graphic Design',
-              desc: 'Branding, print, and digital design that tells your story beautifully.',
-              href: '/graphic-design',
-              color: 'from-rose-pale/50 to-sage-pale/30',
             },
           ].map((service, i) => (
             <a
@@ -163,53 +155,45 @@ import { CONTACT_URL } from '../config/contact';
 
 
   <!-- ═══════════════════════════════════════════════
-       CASE STUDIES TEASER
+       WRITING
   ═══════════════════════════════════════════════ -->
-  <section class="section-padded bg-cream-50 border-y border-cream-200">
+  <section id="writing" class="section-padded bg-cream-50 border-y border-cream-200">
     <div class="container-content">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
         <div>
-          <p class="text-label mb-4 reveal">Client Work</p>
+          <p class="text-label mb-4 reveal">Writing</p>
           <h2 class="font-display text-display-md text-brown ruled-heading mb-8 reveal reveal-delay-1">
-            Case Studies
+            Freelance &amp; Journalism
           </h2>
-          <p class="text-body-lg mb-4 reveal reveal-delay-2">
-            Real problems, documented solutions. Each case study walks through the problem,
-            the diagnostic process, and the outcome — honest about what worked and why.
+          <p class="text-body-lg mb-6 reveal reveal-delay-2">
+            I write for newspapers and publications, covering local stories and community
+            events with an honest, human-first approach. My work is currently appearing in
+            the Waupaca County Post.
           </p>
-          <div class="flex flex-wrap gap-3 mb-8 reveal reveal-delay-3">
-            <span class="tag-rose">IT Support</span>
-            <span class="tag-sage">macOS</span>
-            <span class="tag-brown">Diagnostics</span>
-            <span class="tag-rose">MDM</span>
-          </div>
-          <a href="/case-studies" class="btn-primary reveal reveal-delay-3">
-            View Case Studies →
+          <p class="text-body mb-8 reveal reveal-delay-3">
+            Creative writing is also in the works — with a book on the horizon.
+          </p>
+          <a
+            href="https://www.waupacanow.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primary reveal reveal-delay-3"
+          >
+            Read My Work at Waupaca County Post →
           </a>
         </div>
 
-        <div class="grid gap-4 reveal reveal-delay-2">
-          <div class="card p-6">
-            <h3 class="font-serif text-lg text-brown mb-1">The Missing Operating System</h3>
-            <p class="text-body text-sm">Diagnosing and recovering a 2017 MacBook Pro that lost its bootable system.</p>
-          </div>
-          <div class="card p-6">
-            <h3 class="font-serif text-lg text-brown mb-1">The Mystery of the Mac with Limited Function</h3>
-            <p class="text-body text-sm">Diagnosing internet access restrictions on a 2011 iMac from a former commercial environment.</p>
+        <div class="reveal reveal-delay-2">
+          <div class="card p-8 bg-gradient-to-br from-rose-pale to-cream">
+            <p class="font-serif text-2xl text-brown italic mb-4">"Stories worth telling."</p>
+            <p class="text-body text-sm">
+              Freelance journalism · Feature writing · Creative writing in progress
+            </p>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
-
-
-  <!-- Also explore -->
-  <section class="py-8 border-t border-cream-200">
-    <div class="container-content flex flex-wrap justify-center gap-6">
-      <a href="/it-support" class="text-label text-brown-light hover:text-rose-deep transition-colors">IT Support →</a>
-      <a href="/soc-lab" class="text-label text-brown-light hover:text-rose-deep transition-colors">SOC Lab →</a>
     </div>
   </section>
 
@@ -225,7 +209,7 @@ import { CONTACT_URL } from '../config/contact';
         Ready to work together?
       </h2>
       <p class="text-body-lg text-cream/70 max-w-lg mx-auto mb-10 reveal reveal-delay-2">
-        Whether you need IT support, creative work, or beautiful photography —
+        Whether you need a writer, a photographer, or both —
         I'd love to hear from you.
       </p>
       <div class="flex flex-wrap justify-center gap-4 reveal reveal-delay-3">

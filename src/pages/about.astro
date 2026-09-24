@@ -1,20 +1,8 @@
 ---
 import Page from '../layouts/Page.astro';
-
-const certs = [
-  { name: 'CompTIA Security+',                              status: 'Certified — April 2026', color: 'tag-sage' },
-  { name: 'Cybersecurity Professional Program, UW–Madison', status: 'Completed',              color: 'tag-sage' },
-  { name: "Bachelor's Degree, UW–Eau Claire",               status: 'Political Science · Print Journalism Minor', color: 'tag-brown' },
-];
-
-const skills = [
-  'Splunk SIEM', 'Log Analysis', 'Linux CLI', 'Windows Server', 'Active Directory',
-  'Wireshark', 'Nmap', 'Git & GitHub', 'Hugo', 'Astro',
-  'Adobe Creative Suite', 'Photography', 'Graphic Design',
-];
 ---
 
-<Page title="About" description="Meet Emily Rose Doud — IT specialist, security enthusiast, and visual storyteller behind Doud Co.">
+<Page title="About" description="Meet Emily Rose Doud — freelance writer, journalist, and photographer behind Doud Co.">
 
   <!-- Page hero -->
   <section class="section-padded pb-0">
@@ -24,8 +12,7 @@ const skills = [
         Emily Rose Doud
       </h1>
       <p class="text-body-lg max-w-2xl reveal reveal-delay-2">
-        Cybersecurity professional in training. Communicator, problem-solver, and lifelong learner.
-        Emily Doud Photography.
+        Freelance writer, journalist, and photographer. Storytelling in every form.
       </p>
     </div>
   </section>
@@ -36,34 +23,17 @@ const skills = [
       <div class="lg:col-span-2 space-y-6">
         <h2 class="font-display text-display-md text-brown ruled-heading reveal">My Story</h2>
         <p class="text-body reveal reveal-delay-1">
-          I'm Emily Doud — a cybersecurity professional in training, communicator, problem-solver,
-          and lifelong learner with a background that spans journalism, operations management,
-          customer service, and technology.
-        </p>
-        <p class="text-body reveal reveal-delay-1">
-          Before transitioning into cybersecurity and IT, I spent years working in fast-paced
-          environments where communication, adaptability, and critical thinking mattered every day.
-          From reporting local stories under tight deadlines to managing teams and operations, I
-          learned how to stay calm under pressure, solve problems quickly, and connect with people
-          from all walks of life.
+          I'm Emily — a writer and photographer based in Wisconsin. Words and images have always
+          been how I make sense of the world, and over time they became the work.
         </p>
         <p class="text-body reveal reveal-delay-2">
-          Today, I'm building a career focused on technology, cybersecurity, and digital
-          problem-solving. I have completed the Cybersecurity Professional Program through the
-          University of Wisconsin–Madison, where I've gained hands-on experience with networking
-          fundamentals, Linux systems, SIEM tools, security operations, and incident response
-          concepts. I am CompTIA Security+ certified as of April 2026. Previous education includes
-          a Bachelor's Degree from UW–Eau Claire, with a major in Political Science and a minor in
-          Print Journalism.
-        </p>
-        <p class="text-body reveal reveal-delay-2">
-          What drives me most is the intersection between technology and people. I enjoy translating
-          complex ideas into clear communication, helping others solve problems, and continuing to
-          grow through hands-on learning and real-world experience.
+          My journalism background keeps me grounded in accuracy, curiosity, and telling stories
+          that actually matter to real people. I freelance for newspapers and am working toward
+          a larger goal: writing a book.
         </p>
         <p class="text-body reveal reveal-delay-3">
-          This site is a place to showcase my projects, interests, professional journey, and the
-          work I'm building toward in cybersecurity and technology.
+          I hold a Bachelor's Degree from UW–Eau Claire in Political Science with a minor in
+          Print Journalism. My camera goes wherever the story does.
         </p>
       </div>
 
@@ -72,7 +42,7 @@ const skills = [
         <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
           <img
             src="/images/emily.jpg"
-            alt="Emily Doud smiling outdoors by a lake"
+            alt="Emily Rose Doud"
             class="w-full h-full object-cover object-top"
           />
         </div>
@@ -80,29 +50,13 @@ const skills = [
     </div>
   </section>
 
-  <!-- Certs -->
+  <!-- Education -->
   <section class="section-padded bg-cream-50 border-y border-cream-200">
     <div class="container-content">
-      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Certifications</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {certs.map((cert, i) => (
-          <div class={`card p-6 reveal reveal-delay-${i + 1}`}>
-            <span class={`${cert.color} mb-4 inline-block`}>{cert.status}</span>
-            <h3 class="font-serif text-xl text-brown">{cert.name}</h3>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="section-padded">
-    <div class="container-content">
-      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Skills & Tools</h2>
-      <div class="flex flex-wrap gap-3 reveal reveal-delay-1">
-        {skills.map(skill => (
-          <span class="tag-brown text-sm">{skill}</span>
-        ))}
+      <h2 class="font-display text-display-md text-brown ruled-heading mb-10 reveal">Education</h2>
+      <div class="card p-6 max-w-md reveal reveal-delay-1">
+        <span class="tag-brown mb-4 inline-block">Political Science · Print Journalism Minor</span>
+        <h3 class="font-serif text-xl text-brown">Bachelor's Degree, UW–Eau Claire</h3>
       </div>
     </div>
   </section>
