@@ -9,106 +9,90 @@ import { CONTACT_URL } from '../config/contact';
 >
 
   <!-- ═══════════════════════════════════════════════
-       FULL-BLEED PHOTO
+       FULL-BLEED PHOTO + STAGE LIGHTS
   ═══════════════════════════════════════════════ -->
-  <div class="relative h-[70vh] overflow-hidden">
+  <div class="relative overflow-hidden bg-black" style="min-height:70vh;">
+    <!-- Moon background -->
     <img
       src="/images/lunar-eclipse.jpg"
       alt="Lunar eclipse"
       class="absolute inset-0 w-full h-full object-cover"
     />
-    <div class="absolute inset-0 bg-brown-deep/40"></div>
+    <div class="absolute inset-0 bg-brown-deep/50"></div>
 
-    <!-- Rotating photo panel — left side -->
-    <div class="absolute left-6 sm:left-12 lg:left-24 top-1/2 -translate-y-1/2 w-40 sm:w-56 lg:w-72 aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-2 ring-rose-deep/30">
-      {[
-        '/images/photography/claire-1.jpg',
-        '/images/photography/claire-2.jpg',
-        '/images/photography/claire-3.jpg',
-        '/images/photography/claire-4.jpg',
-        '/images/photography/claire-6.jpg',
-        '/images/photography/claire-7.jpg',
-        '/images/photography/cassie.jpg',
-        '/images/photography/marley-1-edited.jpg',
-        '/images/photography/marley-2-edited.jpg',
-        '/images/photography/cover.jpg',
-        '/images/photography/for-site-1.jpg',
-        '/images/photography/for-site-2.jpg',
-        '/images/photography/landscape-1.jpg',
-        '/images/photography/landscape-2.jpg',
-        '/images/photography/landscape-3.jpg',
-        '/images/photography/landscape-4.jpg',
-        '/images/photography/landscape-5.jpg',
-        '/images/photography/landscape-6.jpg',
-        '/images/photography/landscape-7.jpg',
-        '/images/photography/landscape-bird.jpg',
-        '/images/photography/news-1.jpg',
-        '/images/photography/news-2.jpg',
-        '/images/photography/news-3.jpg',
-        '/images/photography/news-4.jpg',
-        '/images/photography/pup.jpg',
-        '/images/photography/pup-1.jpg',
-        '/images/photography/pup-3.jpg',
-        '/images/photography/claire-5.jpg',
-        '/images/photography/family-4.jpg',
-        '/images/photography/family-5.jpg',
-        '/images/photography/family-7.jpg',
-        '/images/photography/family-8.jpg',
-        '/images/photography/family-9.jpg',
-        '/images/photography/family-10.jpg',
-      ].map((src, i) => (
-        <img
-          src={src}
-          alt="Photography by Emily Doud"
-          class={`photo-reel absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
-          data-index={i}
-        />
-      ))}
-    </div>
-
-    <!-- DOUD Co bottom -->
-    <div class="absolute inset-x-0 bottom-0 flex items-end justify-center pb-10">
-      <h2 class="font-display leading-none" style="font-size: clamp(3.5rem, 12vw, 9rem);">
-        <span class="text-cream">DOUD </span><span class="text-rose-deep">Co</span>
-      </h2>
-    </div>
-  </div>
-
-  <script>
-    const photos = Array.from(document.querySelectorAll<HTMLImageElement>('.photo-reel'));
-    // Fisher-Yates shuffle so order is random each load
-    for (let i = photos.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [photos[i], photos[j]] = [photos[j], photos[i]];
-    }
-    let current = 0;
-    photos[0].classList.replace('opacity-0', 'opacity-100');
-    setInterval(() => {
-      photos[current].classList.replace('opacity-100', 'opacity-0');
-      current = (current + 1) % photos.length;
-      photos[current].classList.replace('opacity-0', 'opacity-100');
-    }, 3000);
-  </script>
-
-  <!-- ═══════════════════════════════════════════════
-       STAGE LIGHTS + QUOTE
-  ═══════════════════════════════════════════════ -->
-  <div class="relative overflow-hidden bg-black py-24">
-
-    <!-- Spotlight beams -->
+    <!-- Stage light beams -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="stage-beam" style="left:8%;background:linear-gradient(180deg,rgba(180,80,60,0.55) 0%,transparent 80%);animation:beam 2.1s ease-in-out infinite;"></div>
       <div class="stage-beam" style="left:22%;background:linear-gradient(180deg,rgba(120,60,30,0.5) 0%,transparent 75%);animation:beam 1.7s ease-in-out infinite 0.4s;"></div>
-      <div class="stage-beam" style="left:38%;background:linear-gradient(180deg,rgba(220,160,80,0.4) 0%,transparent 85%);animation:beam 2.5s ease-in-out infinite 0.9s;"></div>
+      <div class="stage-beam" style="left:38%;background:linear-gradient(180deg,rgba(220,160,80,0.35) 0%,transparent 85%);animation:beam 2.5s ease-in-out infinite 0.9s;"></div>
       <div class="stage-beam" style="left:54%;background:linear-gradient(180deg,rgba(180,80,60,0.45) 0%,transparent 80%);animation:beam 1.9s ease-in-out infinite 0.2s;"></div>
       <div class="stage-beam" style="left:68%;background:linear-gradient(180deg,rgba(100,45,20,0.55) 0%,transparent 75%);animation:beam 2.3s ease-in-out infinite 0.7s;"></div>
       <div class="stage-beam" style="left:82%;background:linear-gradient(180deg,rgba(200,100,50,0.4) 0%,transparent 85%);animation:beam 1.6s ease-in-out infinite 1.1s;"></div>
     </div>
 
-    <!-- Quote -->
-    <div class="relative container-content px-6">
-      <p id="typewriter-quote" class="font-serif text-cream/90 italic mb-4" style="font-size:clamp(1.2rem,3vw,2rem); min-height:3em;"></p>
-      <p id="typewriter-attr" class="text-rose-light text-label tracking-widest opacity-0 transition-opacity duration-700">— Henry David Thoreau</p>
+    <!-- Left: Quote — Right: Photos -->
+    <div class="relative flex items-center justify-between gap-6 px-6 sm:px-12 lg:px-24 py-16" style="min-height:70vh;">
+
+      <!-- Quote (left) -->
+      <div class="flex-1 max-w-sm flex flex-col justify-center">
+        <p id="typewriter-quote" class="font-serif text-cream/90 italic mb-4" style="font-size:clamp(1.1rem,2.5vw,1.75rem); min-height:4em;"></p>
+        <p id="typewriter-attr" class="text-rose-light text-label tracking-widest opacity-0 transition-opacity duration-700">— Henry David Thoreau</p>
+      </div>
+
+      <!-- Rotating photos (right) -->
+      <div class="w-40 sm:w-56 lg:w-72 aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-2 ring-rose-deep/30 flex-shrink-0 relative">
+        {[
+          '/images/photography/claire-1.jpg',
+          '/images/photography/claire-2.jpg',
+          '/images/photography/claire-3.jpg',
+          '/images/photography/claire-4.jpg',
+          '/images/photography/claire-6.jpg',
+          '/images/photography/claire-7.jpg',
+          '/images/photography/cassie.jpg',
+          '/images/photography/marley-1-edited.jpg',
+          '/images/photography/marley-2-edited.jpg',
+          '/images/photography/cover.jpg',
+          '/images/photography/for-site-1.jpg',
+          '/images/photography/for-site-2.jpg',
+          '/images/photography/landscape-1.jpg',
+          '/images/photography/landscape-2.jpg',
+          '/images/photography/landscape-3.jpg',
+          '/images/photography/landscape-4.jpg',
+          '/images/photography/landscape-5.jpg',
+          '/images/photography/landscape-6.jpg',
+          '/images/photography/landscape-7.jpg',
+          '/images/photography/landscape-bird.jpg',
+          '/images/photography/news-1.jpg',
+          '/images/photography/news-2.jpg',
+          '/images/photography/news-3.jpg',
+          '/images/photography/news-4.jpg',
+          '/images/photography/pup.jpg',
+          '/images/photography/pup-1.jpg',
+          '/images/photography/pup-3.jpg',
+          '/images/photography/claire-5.jpg',
+          '/images/photography/family-4.jpg',
+          '/images/photography/family-5.jpg',
+          '/images/photography/family-7.jpg',
+          '/images/photography/family-8.jpg',
+          '/images/photography/family-9.jpg',
+          '/images/photography/family-10.jpg',
+        ].map((src, i) => (
+          <img
+            src={src}
+            alt="Photography by Emily Doud"
+            class={`photo-reel absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+            data-index={i}
+          />
+        ))}
+      </div>
+
+    </div>
+
+    <!-- DOUD Co bottom -->
+    <div class="absolute inset-x-0 bottom-0 flex justify-center pb-8">
+      <h2 class="font-display leading-none" style="font-size:clamp(3rem,10vw,8rem);">
+        <span class="text-cream">DOUD </span><span class="text-rose-deep">Co</span>
+      </h2>
     </div>
   </div>
 
