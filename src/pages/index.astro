@@ -19,8 +19,8 @@ import { CONTACT_URL } from '../config/contact';
     />
     <div class="absolute inset-0 bg-brown-deep/40"></div>
 
-    <!-- Rotating photo panel — right side -->
-    <div class="absolute right-6 sm:right-12 lg:right-24 top-1/2 -translate-y-1/2 w-40 sm:w-56 lg:w-72 aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-2 ring-rose-deep/30">
+    <!-- Rotating photo panel — left side -->
+    <div class="absolute left-6 sm:left-12 lg:left-24 top-1/2 -translate-y-1/2 w-40 sm:w-56 lg:w-72 aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-2 ring-rose-deep/30">
       {[
         '/images/photography/claire-1.jpg',
         '/images/photography/claire-2.jpg',
@@ -113,7 +113,11 @@ import { CONTACT_URL } from '../config/contact';
   </div>
 
   <script>
-    const words = `"Go confidently in the direction of your dreams. Live the life you have imagined."`.split(' ');
+    const lines = [
+      `"Go confidently in the direction of your dreams.`,
+      `Live the life you have imagined."`,
+    ];
+    const words = lines.join('\n').split(' ');
     const el = document.getElementById('typewriter-quote')!;
     const attr = document.getElementById('typewriter-attr')!;
     let i = 0;
@@ -125,7 +129,15 @@ import { CONTACT_URL } from '../config/contact';
 
     const interval = setInterval(() => {
       if (i < words.length) {
-        cursor.before(document.createTextNode((i === 0 ? '' : ' ') + words[i]));
+        const word = words[i];
+        if (word.includes('\n')) {
+          const parts = word.split('\n');
+          cursor.before(document.createTextNode((i === 0 ? '' : ' ') + parts[0]));
+          cursor.before(document.createElement('br'));
+          if (parts[1]) cursor.before(document.createTextNode(parts[1]));
+        } else {
+          cursor.before(document.createTextNode((i === 0 ? '' : ' ') + word));
+        }
         i++;
       } else {
         clearInterval(interval);
