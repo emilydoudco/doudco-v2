@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  title = 'Doud Co.',
+  title = 'Doud Co',
   description = 'Freelance writing, journalism, and photography by Emily Rose Doud.',
   ogImage = '/images/og-default.jpg',
 } = Astro.props;
@@ -24,7 +24,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
 
-    <title>{title === 'Doud Co.' ? title : `${title} · Doud Co.`}</title>
+    <title>{title === 'Doud Co' ? title : `${title} · Doud Co`}</title>
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
