@@ -17,7 +17,11 @@ import { CONTACT_URL } from '../config/contact';
       alt="Lunar eclipse"
       class="absolute inset-0 w-full h-full object-cover"
     />
-    <div class="absolute inset-0 bg-brown-deep/30"></div>
+    <div class="absolute inset-0 bg-brown-deep/40"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <h2 class="font-display text-cream leading-[0.9]" style="font-size: clamp(4rem, 14vw, 10rem);">DOUD</h2>
+      <h2 class="font-display text-rose-deep leading-[0.9]" style="font-size: clamp(4rem, 14vw, 10rem);">Co</h2>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════
@@ -31,44 +35,34 @@ import { CONTACT_URL } from '../config/contact';
     <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-rose-deep/20 via-transparent to-transparent" aria-hidden="true"></div>
     <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brown-deep/40 via-transparent to-transparent" aria-hidden="true"></div>
 
-    <div class="relative section-padded w-full py-24">
-      <div class="container-content grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <div class="relative section-padded w-full py-20">
+      <div class="container-content flex flex-col items-center text-center gap-10">
 
-        <!-- Copy -->
-        <div>
-          <p class="text-label text-rose-light mb-6 tracking-[0.25em] reveal">Emily Rose Doud</p>
-
-          <h1 class="font-display leading-[0.95] mb-8 reveal reveal-delay-1">
-            <span class="block text-cream" style="font-size: clamp(3.5rem, 9vw, 7rem);">DOUD</span>
-            <span class="block text-rose-deep" style="font-size: clamp(3.5rem, 9vw, 7rem);">Co</span>
-          </h1>
-
-          <div class="w-16 h-px bg-rose-deep mb-8 reveal reveal-delay-2"></div>
-
-          <p class="text-cream/80 text-lg max-w-sm mb-4 reveal reveal-delay-2 font-serif italic">
-            "The story is always in the details."
-          </p>
-          <p class="text-cream/60 text-sm max-w-sm mb-10 reveal reveal-delay-3">
-            Freelance writer &amp; journalist. Photographer. Wisconsin-based.
-          </p>
-
-          <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
-            <a href="/about" class="btn-primary bg-rose-deep hover:bg-rose-mid border-rose-deep">Meet Emily</a>
-            <a href="https://www.emilydoudphotography.com" target="_blank" rel="noopener noreferrer" class="btn-ghost border-cream/30 text-cream hover:border-rose-light hover:text-rose-light">Photography →</a>
+        <!-- Circle logo -->
+        <div class="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 reveal">
+          <div class="absolute inset-0 rounded-full border-2 border-rose-deep/30 animate-[spin_30s_linear_infinite]"></div>
+          <div class="absolute inset-4 rounded-full overflow-hidden shadow-2xl ring-1 ring-rose-deep/20">
+            <img
+              src="/images/me.jpg"
+              alt="Emily Rose Doud"
+              class="w-full h-full object-cover object-top"
+            />
           </div>
         </div>
 
-        <!-- Circle photo -->
-        <div class="relative flex justify-center lg:justify-end reveal reveal-delay-2">
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px]">
-            <div class="absolute inset-0 rounded-full border-2 border-rose-deep/30 animate-[spin_30s_linear_infinite]"></div>
-            <div class="absolute inset-4 rounded-full overflow-hidden shadow-2xl ring-1 ring-rose-deep/20">
-              <img
-                src="/images/me.jpg"
-                alt="Emily Rose Doud"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
+        <!-- Phrases -->
+        <div class="reveal reveal-delay-1">
+          <p class="text-rose-light text-label tracking-[0.3em] mb-4">Emily Rose Doud</p>
+          <div class="w-12 h-px bg-rose-deep mx-auto mb-6"></div>
+          <p class="text-cream/90 font-serif italic mb-3" style="font-size: clamp(1.25rem, 3vw, 2rem);">
+            "The story is always in the details."
+          </p>
+          <p class="text-cream/60 mb-10" style="font-size: clamp(1rem, 2vw, 1.25rem);">
+            Freelance writer &amp; journalist · Photographer · Wisconsin-based
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a href="/about" class="btn-primary bg-rose-deep hover:bg-rose-mid border-rose-deep">Meet Emily</a>
+            <a href="https://www.emilydoudphotography.com" target="_blank" rel="noopener noreferrer" class="btn-ghost border-cream/30 text-cream hover:border-rose-light hover:text-rose-light">Photography →</a>
           </div>
         </div>
 
