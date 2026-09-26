@@ -11,19 +11,84 @@ import { CONTACT_URL } from '../config/contact';
   <!-- ═══════════════════════════════════════════════
        FULL-BLEED PHOTO
   ═══════════════════════════════════════════════ -->
-  <div class="relative h-[60vh] overflow-hidden">
+  <div class="relative h-[70vh] overflow-hidden">
     <img
       src="/images/lunar-eclipse.jpg"
       alt="Lunar eclipse"
       class="absolute inset-0 w-full h-full object-cover"
     />
     <div class="absolute inset-0 bg-brown-deep/40"></div>
-    <div class="absolute inset-0 flex flex-col items-center justify-end text-center px-6 pb-12">
+
+    <!-- Rotating photo panel — left side -->
+    <div class="absolute left-6 sm:left-12 lg:left-24 top-1/2 -translate-y-1/2 w-40 sm:w-56 lg:w-72 aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-2 ring-rose-deep/30">
+      {[
+        '/images/photography/claire-1.jpg',
+        '/images/photography/claire-2.jpg',
+        '/images/photography/claire-3.jpg',
+        '/images/photography/claire-4.jpg',
+        '/images/photography/claire-6.jpg',
+        '/images/photography/claire-7.jpg',
+        '/images/photography/cassie.jpg',
+        '/images/photography/marley-1-edited.jpg',
+        '/images/photography/marley-2-edited.jpg',
+        '/images/photography/cover.jpg',
+        '/images/photography/for-site-1.jpg',
+        '/images/photography/for-site-2.jpg',
+        '/images/photography/landscape-1.jpg',
+        '/images/photography/landscape-2.jpg',
+        '/images/photography/landscape-3.jpg',
+        '/images/photography/landscape-4.jpg',
+        '/images/photography/landscape-5.jpg',
+        '/images/photography/landscape-6.jpg',
+        '/images/photography/landscape-7.jpg',
+        '/images/photography/landscape-bird.jpg',
+        '/images/photography/news-1.jpg',
+        '/images/photography/news-2.jpg',
+        '/images/photography/news-3.jpg',
+        '/images/photography/news-4.jpg',
+        '/images/photography/pup.jpg',
+        '/images/photography/pup-1.jpg',
+        '/images/photography/pup-3.jpg',
+        '/images/photography/claire-5.jpg',
+        '/images/photography/family-4.jpg',
+        '/images/photography/family-5.jpg',
+        '/images/photography/family-7.jpg',
+        '/images/photography/family-8.jpg',
+        '/images/photography/family-9.jpg',
+        '/images/photography/family-10.jpg',
+      ].map((src, i) => (
+        <img
+          src={src}
+          alt="Photography by Emily Doud"
+          class={`photo-reel absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}`}
+          data-index={i}
+        />
+      ))}
+    </div>
+
+    <!-- DOUD Co bottom -->
+    <div class="absolute inset-x-0 bottom-0 flex items-end justify-center pb-10">
       <h2 class="font-display leading-none" style="font-size: clamp(3.5rem, 12vw, 9rem);">
         <span class="text-cream">DOUD </span><span class="text-rose-deep">Co</span>
       </h2>
     </div>
   </div>
+
+  <script>
+    const photos = Array.from(document.querySelectorAll<HTMLImageElement>('.photo-reel'));
+    // Fisher-Yates shuffle so order is random each load
+    for (let i = photos.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [photos[i], photos[j]] = [photos[j], photos[i]];
+    }
+    let current = 0;
+    photos[0].classList.replace('opacity-0', 'opacity-100');
+    setInterval(() => {
+      photos[current].classList.replace('opacity-100', 'opacity-0');
+      current = (current + 1) % photos.length;
+      photos[current].classList.replace('opacity-0', 'opacity-100');
+    }, 3000);
+  </script>
 
   <!-- ═══════════════════════════════════════════════
        HERO
