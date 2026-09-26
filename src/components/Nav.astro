@@ -1,9 +1,9 @@
 ---
 import { CONTACT_URL } from '../config/contact';
 const nav = [
-  { label: 'About',       href: '/about' },
-  { label: 'Writing',     href: '/#writing' },
-  { label: 'Photography', href: '/photography' },
+  { label: 'About',       href: '/about',                                  external: false },
+  { label: 'Writing',     href: '/#writing',                               external: false },
+  { label: 'Photography', href: 'https://www.emilydoudphotography.com',    external: true  },
 ];
 
 const current = Astro.url.pathname;
@@ -27,10 +27,12 @@ const current = Astro.url.pathname;
 
       <!-- Desktop links -->
       <ul class="hidden lg:flex items-center gap-8">
-        {nav.map(({ label, href }) => (
+        {nav.map(({ label, href, external }) => (
           <li>
             <a
               href={href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
               class:list={[
                 'text-label transition-colors duration-200 hover:text-rose-deep',
                 current.startsWith(href) ? 'text-rose-deep' : 'text-brown-light',
@@ -63,9 +65,14 @@ const current = Astro.url.pathname;
   <!-- Mobile menu -->
   <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 border-t border-cream-200 px-6 pb-6">
     <ul class="flex flex-col gap-4 pt-4">
-      {nav.map(({ label, href }) => (
+      {nav.map(({ label, href, external }) => (
         <li>
-          <a href={href} class="font-serif text-xl text-brown hover:text-rose-deep transition-colors">
+          <a
+            href={href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+            class="font-serif text-xl text-brown hover:text-rose-deep transition-colors"
+          >
             {label}
           </a>
         </li>
