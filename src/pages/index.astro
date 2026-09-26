@@ -106,13 +106,34 @@ import { CONTACT_URL } from '../config/contact';
     </div>
 
     <!-- Quote -->
-    <div class="relative container-content text-center px-6">
-      <p class="font-serif text-cream/90 italic mb-4 reveal" style="font-size:clamp(1.2rem,3vw,2rem);">
-        "Go confidently in the direction of your dreams.<br class="hidden sm:block" /> Live the life you have imagined."
-      </p>
-      <p class="text-rose-light text-label tracking-widest reveal reveal-delay-1">— Henry David Thoreau</p>
+    <div class="relative container-content px-6">
+      <p id="typewriter-quote" class="font-serif text-cream/90 italic mb-4" style="font-size:clamp(1.2rem,3vw,2rem); min-height:3em;"></p>
+      <p id="typewriter-attr" class="text-rose-light text-label tracking-widest opacity-0 transition-opacity duration-700">— Henry David Thoreau</p>
     </div>
   </div>
+
+  <script>
+    const words = `"Go confidently in the direction of your dreams. Live the life you have imagined."`.split(' ');
+    const el = document.getElementById('typewriter-quote')!;
+    const attr = document.getElementById('typewriter-attr')!;
+    let i = 0;
+    // Cursor span
+    const cursor = document.createElement('span');
+    cursor.textContent = '|';
+    cursor.style.cssText = 'animation:blink 0.7s step-end infinite;margin-left:2px;color:rgba(180,80,60,0.9);';
+    el.appendChild(cursor);
+
+    const interval = setInterval(() => {
+      if (i < words.length) {
+        cursor.before(document.createTextNode((i === 0 ? '' : ' ') + words[i]));
+        i++;
+      } else {
+        clearInterval(interval);
+        cursor.remove();
+        attr.classList.remove('opacity-0');
+      }
+    }, 120);
+  </script>
 
   <style>
     .stage-beam {
@@ -125,6 +146,10 @@ import { CONTACT_URL } from '../config/contact';
     @keyframes beam {
       0%, 100% { opacity: 0.15; }
       50%       { opacity: 1; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
     }
   </style>
 
