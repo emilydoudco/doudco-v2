@@ -11,62 +11,54 @@ import { CONTACT_URL } from '../config/contact';
   <!-- ═══════════════════════════════════════════════
        HERO
   ═══════════════════════════════════════════════ -->
-  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+  <section class="relative min-h-[95vh] flex items-center overflow-hidden bg-brown">
 
-    <!-- Layered background -->
-    <div class="absolute inset-0" aria-hidden="true">
-      <div class="absolute inset-0 bg-gradient-to-br from-cream via-cream-100 to-cream-200"></div>
-      <!-- Botanical tints -->
-      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-sage-pale/30 via-transparent to-transparent"></div>
-      <div class="absolute bottom-0 left-0 w-2/3 h-1/2 bg-gradient-to-tr from-rose-pale/20 via-transparent to-transparent"></div>
-      <!-- Noise grain overlay -->
-      <div class="absolute inset-0 bg-noise opacity-60"></div>
-    </div>
+    <!-- Background texture -->
+    <div class="absolute inset-0 bg-noise opacity-30" aria-hidden="true"></div>
+    <!-- Warm glow -->
+    <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-rose-deep/20 via-transparent to-transparent" aria-hidden="true"></div>
+    <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brown-deep/40 via-transparent to-transparent" aria-hidden="true"></div>
 
-    <!-- Decorative circle -->
-    <div
-      class="hidden lg:block absolute -right-24 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-sage/20"
-      aria-hidden="true"
-    ></div>
-    <div
-      class="hidden lg:block absolute -right-32 top-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-rose-deep/10"
-      aria-hidden="true"
-    ></div>
-
-    <div class="relative section-padded w-full">
-      <div class="container-content grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+    <div class="relative section-padded w-full py-24">
+      <div class="container-content grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- Copy -->
         <div>
-          <p class="text-label mb-6 reveal">Writing · Photography</p>
+          <p class="text-label text-rose-light mb-6 tracking-[0.25em] reveal">Emily Rose Doud</p>
 
-          <h1 class="font-display text-display-xl text-brown leading-[1.05] mb-6 reveal reveal-delay-1">
-            DOUD <em class="text-rose-deep not-italic">Co</em>
+          <h1 class="font-display leading-[0.95] mb-8 reveal reveal-delay-1">
+            <span class="block text-cream" style="font-size: clamp(3.5rem, 9vw, 7rem);">DOUD</span>
+            <span class="block text-rose-deep" style="font-size: clamp(3.5rem, 9vw, 7rem);">Co</span>
           </h1>
 
-          <p class="text-body-lg max-w-md mb-10 reveal reveal-delay-2">
-            Hi, I'm Emily — freelance writer, journalist, and photographer.
-            Doud Co is where <em>words</em> meet <em>images</em>.
+          <div class="w-16 h-px bg-rose-deep mb-8 reveal reveal-delay-2"></div>
+
+          <p class="text-cream/80 text-lg max-w-sm mb-4 reveal reveal-delay-2 font-serif italic">
+            "The story is always in the details."
+          </p>
+          <p class="text-cream/60 text-sm max-w-sm mb-10 reveal reveal-delay-3">
+            Freelance writer &amp; journalist. Photographer. Wisconsin-based.
           </p>
 
           <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
-            <a href="/about" class="btn-primary">Meet Emily</a>
-            <a href="/photography" class="btn-ghost">Photography</a>
+            <a href="/about" class="btn-primary bg-rose-deep hover:bg-rose-mid border-rose-deep">Meet Emily</a>
+            <a href="https://www.emilydoudphotography.com" target="_blank" rel="noopener noreferrer" class="btn-ghost border-cream/30 text-cream hover:border-rose-light hover:text-rose-light">Photography →</a>
           </div>
         </div>
 
-        <!-- Portrait -->
+        <!-- Editorial photo -->
         <div class="relative flex justify-center lg:justify-end reveal reveal-delay-2">
-          <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[420px] lg:h-[420px]">
-            <!-- Outer decorative ring -->
-            <div class="absolute inset-0 rounded-full border-2 border-rose-deep/20 animate-[spin_30s_linear_infinite]"></div>
-            <!-- Logo -->
-            <div class="absolute inset-4 rounded-full bg-gradient-to-br from-sage-pale via-cream to-rose-pale flex items-center justify-center overflow-hidden shadow-rose">
+          <div class="relative">
+            <!-- Accent border offset -->
+            <div class="absolute -bottom-3 -right-3 w-full h-full border-2 border-rose-deep/50 rounded-xl" aria-hidden="true"></div>
+            <div class="relative w-72 sm:w-80 lg:w-[400px] aspect-[3/4] rounded-xl overflow-hidden shadow-2xl">
               <img
                 src="/images/me.jpg"
                 alt="Emily Rose Doud"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover object-top"
               />
+              <!-- Subtle vignette -->
+              <div class="absolute inset-0 bg-gradient-to-t from-brown/40 via-transparent to-transparent"></div>
             </div>
           </div>
         </div>
@@ -76,8 +68,8 @@ import { CONTACT_URL } from '../config/contact';
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-4" aria-hidden="true">
-      <div class="w-0.5 h-10 bg-gradient-to-b from-transparent to-brown-light animate-pulse"></div>
-      <p class="text-label text-brown-light/60" style="writing-mode: horizontal-tb;">scroll</p>
+      <div class="w-0.5 h-10 bg-gradient-to-b from-transparent to-cream/40 animate-pulse"></div>
+      <p class="text-label text-cream/30">scroll</p>
     </div>
   </section>
 
